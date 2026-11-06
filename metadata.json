@@ -1,0 +1,6 @@
+{
+  "name": "ProBio Academy",
+  "description": "Explore ProBio Academy, offering academic guidance from Class 9 to Master's level. Connect with Shubhajit Sir to enquire about courses and book a demo class.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
