@@ -21,9 +21,9 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         ? 'text-2xl'
         : 'text-lg sm:text-xl';
 
-  const textColor = theme === 'dark' ? 'text-white' : 'text-[#101D36]';
+  const textColor = theme === 'dark' ? 'text-white' : 'text-[#180F2E]';
   const taglineColor =
-    theme === 'dark' ? 'text-[#F2B84B]/90' : 'text-[#2855C5]';
+    theme === 'dark' ? 'text-violet-300' : 'text-violet-700';
 
   return (
     <span className="inline-flex items-center gap-3 shrink-0 select-none">
@@ -40,37 +40,44 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
           width="58"
           height="58"
           rx="14"
-          fill="#101D36"
-          stroke="#F2B84B"
+          fill="#13092D"
+          stroke="#A855F7"
           strokeOpacity="0.45"
           strokeWidth="1.5"
         />
-        {/* Royal Blue orbital knowledge arc */}
+        {/* Electric Violet orbital knowledge & DNA arc */}
         <path
           d="M14 44C14 28.536 22.059 16 32 16C41.941 16 50 28.536 50 44"
-          stroke="#2855C5"
+          stroke="#8B5CF6"
           strokeWidth="2.4"
+          strokeLinecap="round"
+        />
+        {/* Phosphodiester Cyan secondary helix loop */}
+        <path
+          d="M20 22C26 26 38 26 44 22"
+          stroke="#06B6D4"
+          strokeWidth="1.8"
           strokeLinecap="round"
         />
         {/* Open academic book leaves in Warm Gold */}
         <path
-          d="M15 24.5C21.2 21.5 27.4 22.4 32 26.5C36.6 22.4 42.8 21.5 49 24.5V45.5C42.8 42.5 36.6 43.4 32 47.5C27.4 43.4 21.2 42.5 15 45.5V24.5Z"
-          fill="#182B4E"
-          stroke="#F2B84B"
+          d="M15 25.5C21.2 22.5 27.4 23.4 32 27.5C36.6 23.4 42.8 22.5 49 25.5V46.5C42.8 43.5 36.6 44.4 32 48.5C27.4 44.4 21.2 43.5 15 46.5V25.5Z"
+          fill="#1D1042"
+          stroke="#F59E0B"
           strokeWidth="2.4"
           strokeLinejoin="round"
         />
         {/* Center spine & spire */}
         <path
-          d="M32 26.5V47.5"
-          stroke="#F2B84B"
+          d="M32 27.5V48.5"
+          stroke="#F59E0B"
           strokeWidth="2.2"
           strokeLinecap="round"
         />
         {/* Zenith diamond of excellence */}
         <path
           d="M32 10.5L35.4 15L32 19.5L28.6 15L32 10.5Z"
-          fill="#F2B84B"
+          fill="#F59E0B"
         />
       </svg>
 

@@ -12,6 +12,14 @@ export interface AcademicMaterialSet {
   eraserRose: THREE.MeshStandardMaterial;
   opticalGlass: THREE.MeshPhysicalMaterial;
   bookCoverMat: THREE.MeshStandardMaterial;
+  amethystGlass: THREE.MeshPhysicalMaterial;
+  neonVioletEmissive: THREE.MeshStandardMaterial;
+  bioCyanEmissive: THREE.MeshStandardMaterial;
+  adenineFuchsia: THREE.MeshPhysicalMaterial;
+  thymineCyan: THREE.MeshPhysicalMaterial;
+  guanineEmerald: THREE.MeshPhysicalMaterial;
+  cytosinePurple: THREE.MeshPhysicalMaterial;
+  hydrogenBondMat: THREE.MeshStandardMaterial;
   dispose: () => void;
 }
 
@@ -203,6 +211,81 @@ export function createAcademicMaterials(
     depthWrite: false,
   });
 
+  // Hyper-Realistic Purplish & Bioluminescent DNA Materials
+  const amethystGlass = new THREE.MeshPhysicalMaterial({
+    color: 0x9333ea,
+    emissive: 0x581c87,
+    emissiveIntensity: 0.35,
+    roughness: 0.16,
+    metalness: 0.14,
+    transmission: isSoftwareGl ? 0 : 0.42,
+    transparent: true,
+    opacity: isSoftwareGl ? 0.85 : 0.95,
+    ior: 1.52,
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.08,
+  });
+
+  const neonVioletEmissive = new THREE.MeshStandardMaterial({
+    color: 0xc084fc,
+    emissive: 0x9333ea,
+    emissiveIntensity: 0.95,
+    roughness: 0.22,
+    metalness: 0.25,
+  });
+
+  const bioCyanEmissive = new THREE.MeshStandardMaterial({
+    color: 0x22d3ee,
+    emissive: 0x06b6d4,
+    emissiveIntensity: 0.9,
+    roughness: 0.2,
+    metalness: 0.3,
+  });
+
+  const adenineFuchsia = new THREE.MeshPhysicalMaterial({
+    color: 0xf43f5e,
+    emissive: 0xe11d48,
+    emissiveIntensity: 0.45,
+    roughness: 0.22,
+    metalness: 0.18,
+    clearcoat: 0.8,
+  });
+
+  const thymineCyan = new THREE.MeshPhysicalMaterial({
+    color: 0x06b6d4,
+    emissive: 0x0891b2,
+    emissiveIntensity: 0.45,
+    roughness: 0.22,
+    metalness: 0.18,
+    clearcoat: 0.8,
+  });
+
+  const guanineEmerald = new THREE.MeshPhysicalMaterial({
+    color: 0x10b981,
+    emissive: 0x059669,
+    emissiveIntensity: 0.45,
+    roughness: 0.22,
+    metalness: 0.18,
+    clearcoat: 0.8,
+  });
+
+  const cytosinePurple = new THREE.MeshPhysicalMaterial({
+    color: 0x8b5cf6,
+    emissive: 0x6d28d9,
+    emissiveIntensity: 0.45,
+    roughness: 0.22,
+    metalness: 0.18,
+    clearcoat: 0.8,
+  });
+
+  const hydrogenBondMat = new THREE.MeshStandardMaterial({
+    color: 0xfef08a,
+    emissive: 0xfef08a,
+    emissiveIntensity: 0.9,
+    roughness: 0.15,
+    metalness: 0.1,
+  });
+
   const allMaterials: THREE.Material[] = [
     navyLeather,
     bookCoverMat,
@@ -215,6 +298,14 @@ export function createAcademicMaterials(
     graphite,
     eraserRose,
     opticalGlass,
+    amethystGlass,
+    neonVioletEmissive,
+    bioCyanEmissive,
+    adenineFuchsia,
+    thymineCyan,
+    guanineEmerald,
+    cytosinePurple,
+    hydrogenBondMat,
   ];
 
   return {
@@ -229,6 +320,14 @@ export function createAcademicMaterials(
     eraserRose,
     opticalGlass,
     bookCoverMat,
+    amethystGlass,
+    neonVioletEmissive,
+    bioCyanEmissive,
+    adenineFuchsia,
+    thymineCyan,
+    guanineEmerald,
+    cytosinePurple,
+    hydrogenBondMat,
     dispose: () => {
       coverTexture.dispose();
       pageTexture.dispose();
@@ -704,3 +803,171 @@ export function createGoldenParticles(
 
   return { mesh, data };
 }
+
+/**
+ * 10. Hyper-Realistic B-DNA Double Helix Molecule.
+ * Scientifically informed geometry:
+ * - Two antiparallel spiraling sugar-phosphate backbones offset by 138 degrees to form authentic Major & Minor Grooves.
+ * - Smooth continuous Catmull-Rom tube ribbons.
+ * - Alternating PO4 phosphate & deoxyribose atomic nodes.
+ * - Intercalated base-pair rungs (A=T with 2 hydrogen bonds, G≡C with 3 hydrogen bonds).
+ * - Surrounding hydration counter-ion particles & bioluminescent quantum dots.
+ */
+export function createHyperRealisticDNAGroup(
+  mats: AcademicMaterialSet,
+  geometries: THREE.BufferGeometry[],
+  isCompact = false
+): THREE.Group {
+  const group = new THREE.Group();
+
+  const height = isCompact ? 5.8 : 8.8;
+  const radius = isCompact ? 1.15 : 1.45;
+  const turns = isCompact ? 1.9 : 2.6;
+  const samplesPerTurn = 48;
+  const totalSamples = Math.floor(turns * samplesPerTurn);
+  const minorGrooveOffset = 2.41; // ~138 degrees offset creating authentic Major & Minor grooves!
+
+  const strand1Points: THREE.Vector3[] = [];
+  const strand2Points: THREE.Vector3[] = [];
+
+  for (let i = 0; i <= totalSamples; i++) {
+    const t = i / totalSamples;
+    const y = (t - 0.5) * height;
+    const angle = t * turns * Math.PI * 2;
+
+    const x1 = Math.cos(angle) * radius;
+    const z1 = Math.sin(angle) * radius;
+    strand1Points.push(new THREE.Vector3(x1, y, z1));
+
+    const x2 = Math.cos(angle + minorGrooveOffset) * radius;
+    const z2 = Math.sin(angle + minorGrooveOffset) * radius;
+    strand2Points.push(new THREE.Vector3(x2, y, z2));
+  }
+
+  const curve1 = new THREE.CatmullRomCurve3(strand1Points);
+  const curve2 = new THREE.CatmullRomCurve3(strand2Points);
+
+  const tubeGeo1 = new THREE.TubeGeometry(curve1, isCompact ? 68 : 116, 0.09, 12, false);
+  const tubeGeo2 = new THREE.TubeGeometry(curve2, isCompact ? 68 : 116, 0.09, 12, false);
+  geometries.push(tubeGeo1, tubeGeo2);
+
+  // Strand 1 and 2 continuous backbone tubes in bioluminescent amethyst glass
+  const strandMesh1 = new THREE.Mesh(tubeGeo1, mats.amethystGlass);
+  const strandMesh2 = new THREE.Mesh(tubeGeo2, mats.amethystGlass);
+  group.add(strandMesh1, strandMesh2);
+
+  // Alternating Phosphate (PO4) & Deoxyribose Sugar Nodes along both backbones
+  const nodeCount = isCompact ? 24 : 38;
+  const sphereGeoPhosphate = new THREE.SphereGeometry(0.135, 14, 14);
+  const sphereGeoSugar = new THREE.SphereGeometry(0.115, 12, 12);
+  const baseRodGeo = new THREE.CylinderGeometry(0.05, 0.05, 1, 10);
+  const hBondNodeGeo = new THREE.SphereGeometry(0.045, 10, 10);
+  geometries.push(sphereGeoPhosphate, sphereGeoSugar, baseRodGeo, hBondNodeGeo);
+
+  for (let i = 0; i < nodeCount; i++) {
+    const t = i / (nodeCount - 1);
+    const p1 = curve1.getPoint(t);
+    const p2 = curve2.getPoint(t);
+
+    const isPhosphate = i % 2 === 0;
+    const mat1 = isPhosphate ? mats.brushedGold : mats.royalLacquer;
+    const mat2 = isPhosphate ? mats.bioCyanEmissive : mats.neonVioletEmissive;
+
+    const n1 = new THREE.Mesh(isPhosphate ? sphereGeoPhosphate : sphereGeoSugar, mat1);
+    n1.position.copy(p1);
+    const n2 = new THREE.Mesh(isPhosphate ? sphereGeoPhosphate : sphereGeoSugar, mat2);
+    n2.position.copy(p2);
+    group.add(n1, n2);
+  }
+
+  // Intercalated Nitrogenous Base Pairs (A-T, G-C)
+  const basePairCount = isCompact ? 18 : 28;
+  const dummyZ = new THREE.Vector3(0, 1, 0);
+
+  for (let b = 0; b < basePairCount; b++) {
+    const t = (b + 0.5) / basePairCount;
+    const p1 = curve1.getPoint(t);
+    const p2 = curve2.getPoint(t);
+
+    const fullVector = new THREE.Vector3().subVectors(p2, p1);
+    const length = fullVector.length();
+    const midPoint = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+
+    // Biological base pair types: A=T (2 H-bonds) or G≡C (3 H-bonds)
+    const pairType = b % 4; // 0: A-T, 1: G-C, 2: T-A, 3: C-G
+    let matLeft: THREE.Material;
+    let matRight: THREE.Material;
+    let hBondCount = 2;
+
+    switch (pairType) {
+      case 0:
+        matLeft = mats.adenineFuchsia;
+        matRight = mats.thymineCyan;
+        hBondCount = 2;
+        break;
+      case 1:
+        matLeft = mats.guanineEmerald;
+        matRight = mats.cytosinePurple;
+        hBondCount = 3;
+        break;
+      case 2:
+        matLeft = mats.thymineCyan;
+        matRight = mats.adenineFuchsia;
+        hBondCount = 2;
+        break;
+      default:
+        matLeft = mats.cytosinePurple;
+        matRight = mats.guanineEmerald;
+        hBondCount = 3;
+        break;
+    }
+
+    // Left base cylinder (from p1 to midPoint * 0.9)
+    const halfLen = length * 0.44;
+    const leftMid = new THREE.Vector3().copy(p1).addScaledVector(fullVector, 0.22);
+    const rightMid = new THREE.Vector3().copy(p2).addScaledVector(fullVector, -0.22);
+
+    const leftRod = new THREE.Mesh(baseRodGeo, matLeft);
+    leftRod.position.copy(leftMid);
+    leftRod.scale.set(1, halfLen, 1);
+    leftRod.quaternion.setFromUnitVectors(dummyZ, fullVector.clone().normalize());
+
+    const rightRod = new THREE.Mesh(baseRodGeo, matRight);
+    rightRod.position.copy(rightMid);
+    rightRod.scale.set(1, halfLen, 1);
+    rightRod.quaternion.setFromUnitVectors(dummyZ, fullVector.clone().normalize());
+
+    group.add(leftRod, rightRod);
+
+    // Hydrogen bond nodes in center
+    const perp = new THREE.Vector3(0, 1, 0).cross(fullVector).normalize();
+    for (let h = 0; h < hBondCount; h++) {
+      const hNode = new THREE.Mesh(hBondNodeGeo, mats.hydrogenBondMat);
+      const hOffset = (h - (hBondCount - 1) / 2) * 0.085;
+      hNode.position.copy(midPoint).addScaledVector(perp, hOffset);
+      group.add(hNode);
+    }
+  }
+
+  // Hydration shell & bio-luminescent counter ions floating around grooves
+  const ionCount = isCompact ? 20 : 34;
+  const ionGeo = new THREE.SphereGeometry(0.048, 8, 8);
+  geometries.push(ionGeo);
+  for (let k = 0; k < ionCount; k++) {
+    const frac = k / ionCount;
+    const pt = curve1.getPoint(frac);
+    const pt2 = curve2.getPoint(frac);
+    const ion = new THREE.Mesh(ionGeo, k % 2 === 0 ? mats.bioCyanEmissive : mats.warmGoldEmissive);
+    const angle = k * 1.618;
+    const radialDist = 0.45 + (k % 3) * 0.24;
+    ion.position.set(
+      (pt.x + pt2.x) * 0.5 + Math.cos(angle) * radialDist,
+      (pt.y + pt2.y) * 0.5 + (k % 2 === 0 ? 0.12 : -0.12),
+      (pt.z + pt2.z) * 0.5 + Math.sin(angle) * radialDist
+    );
+    group.add(ion);
+  }
+
+  return group;
+}
+

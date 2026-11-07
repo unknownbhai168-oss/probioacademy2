@@ -1,17 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpenCheck } from 'lucide-react';
+import { BookOpenCheck, Dna, Sparkles } from 'lucide-react';
 import { ABOUT_HIGHLIGHTS, ACADEMY_INFO } from '../data/academyData';
 
 export const About: React.FC = () => {
   return (
     <section
       id="about"
-      className="relative bg-[#F8F9FC] py-20 sm:py-24 lg:py-28 text-[#202A3A]"
+      className="relative bg-[#FBF9FF] py-20 sm:py-24 lg:py-28 text-[#180F2E]"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start">
-          {/* Left Column: Narrative & Academic Focus */}
+          {/* Left Column: Narrative & NEET Academic Focus */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -19,42 +19,48 @@ export const About: React.FC = () => {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2855C5]">
-              About {ACADEMY_INFO.brandDisplay}
-            </p>
-            <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#101D36] text-balance leading-tight">
-              More Than Just Tuition. A Foundation for Excellence.
+            <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/40 bg-purple-100/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-purple-800">
+              <Sparkles className="h-3 w-3 text-purple-600" />
+              <span>About {ACADEMY_INFO.brandDisplay}</span>
+            </div>
+
+            <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#180F2E] text-balance leading-tight">
+              Where Biological Concepts Meet NEET Excellence.
             </h2>
 
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-[#202A3A]/90">
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-[#180F2E]/90">
               <p>
-                ProBio Academy is an academic learning institution dedicated to genuine
-                conceptual understanding, structured learning, and steady individual academic
-                development.
+                ProBio Academy is a dedicated academic coaching institution centered on{' '}
+                <strong className="font-semibold text-purple-900">
+                  NEET UG Medical Entrance Preparation
+                </strong>
+                . We empower Class 11, Class 12, and Droppers / Repeaters with deep conceptual
+                mastery rather than blind memorisation.
               </p>
               <p>
-                Guided by {ACADEMY_INFO.teacherName}, instruction spans from{' '}
-                <strong className="font-semibold text-[#101D36]">
+                Mentored by {ACADEMY_INFO.teacherName}, our pedagogy spans{' '}
+                <strong className="font-semibold text-purple-900">
                   {ACADEMY_INFO.teachingRange}
                 </strong>
-                , offering students an attentive, student-focused environment where foundational
-                concepts are mastered before advancing to higher complexity.
+                . We bridge line-by-line NCERT theory, interactive 3D molecular structures, and
+                rigorous Assertion-Reasoning deduction to ensure students score consistently above
+                the 340+ threshold in NEET Biology.
               </p>
             </div>
 
-            {/* Clean architectural callout card (hairline border, zero thick left accent stripe) */}
-            <div className="mt-8 rounded-xl border border-[#101D36]/12 bg-white p-6 shadow-xs">
+            {/* Architectural Callout Card */}
+            <div className="mt-8 rounded-2xl border border-purple-500/20 bg-white p-6 shadow-sm">
               <div className="flex items-start gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#101D36] text-[#F2B84B]">
-                  <BookOpenCheck className="h-5 w-5" />
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#13092D] text-amber-300">
+                  <Dna className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-semibold text-[#101D36]">
-                    {ACADEMY_INFO.tagline}
+                  <h3 className="font-serif text-lg font-bold text-[#180F2E]">
+                    The 340+ Biology Blueprint
                   </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-[#202A3A]/80">
-                    Every learner receives patient doubt-clearing support and structured guidance
-                    tailored to their academic stage and curiosity.
+                  <p className="mt-1 text-sm leading-relaxed text-[#180F2E]/80">
+                    Every aspirant receives line-by-line NCERT clarity, chapter-wise mock drills,
+                    and unlimited personal doubt-clearing with Shubhajit Sir.
                   </p>
                 </div>
               </div>
@@ -75,21 +81,21 @@ export const About: React.FC = () => {
                     delay: idx * 0.06,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="group rounded-xl border border-[#101D36]/10 bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#2855C5]/35 hover:shadow-md"
+                  className="group rounded-2xl border border-purple-500/15 bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-500/40 hover:shadow-lg"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-sm font-bold text-[#2855C5] tabular-nums">
+                    <span className="font-serif text-sm font-bold text-purple-700 tabular-nums">
                       0{idx + 1}
                     </span>
                     <span
                       aria-hidden="true"
-                      className="h-1.5 w-6 rounded-full bg-[#F2B84B]/60 transition-all duration-200 group-hover:w-10 group-hover:bg-[#F2B84B]"
+                      className="h-1.5 w-6 rounded-full bg-amber-400/60 transition-all duration-200 group-hover:w-10 group-hover:bg-amber-400"
                     />
                   </div>
-                  <h3 className="mt-4 font-serif text-lg font-semibold text-[#101D36]">
+                  <h3 className="mt-4 font-serif text-lg font-bold text-[#180F2E]">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#202A3A]/80">
+                  <p className="mt-2 text-sm leading-relaxed text-[#180F2E]/80">
                     {item.detail}
                   </p>
                 </motion.div>

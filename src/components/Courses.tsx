@@ -9,16 +9,16 @@ import {
   Compass,
   GraduationCap,
   Layers,
+  Sparkles,
 } from 'lucide-react';
 import { COURSES, type CourseProgramme } from '../data/academyData';
-import { AcademicCanvas3D } from '../three/AcademicCanvas3D';
 
 interface CoursesProps {
   onSelectCourseAndBook: (courseTitle: string) => void;
 }
 
 const CourseIcon: React.FC<{ name: CourseProgramme['iconName'] }> = ({ name }) => {
-  const cls = 'h-6 w-6 text-[#F2B84B]';
+  const cls = 'h-6 w-6 text-amber-300';
   switch (name) {
     case 'book':
       return <BookOpen className={cls} />;
@@ -85,26 +85,26 @@ const TiltCourseCard: React.FC<CourseCardProps> = ({
         rotateY,
         transformPerspective: 900,
       }}
-      className="group flex flex-col justify-between rounded-2xl border border-[#101D36]/12 bg-white p-6 sm:p-7 shadow-xs transition-shadow duration-200 hover:border-[#2855C5]/40 hover:shadow-xl"
+      className="group flex flex-col justify-between rounded-2xl border border-purple-500/15 bg-white p-6 sm:p-7 shadow-sm transition-all duration-200 hover:border-purple-500/40 hover:shadow-xl"
     >
       <div>
         {/* Card Header: Icon + Unboxed Level Label */}
         <div className="flex items-center justify-between gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#101D36] shadow-sm transition-transform duration-200 group-hover:scale-105">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#13092D] shadow-sm transition-transform duration-200 group-hover:scale-105">
             <CourseIcon name={course.iconName} />
           </div>
-          <span className="text-xs font-semibold tracking-wide uppercase text-[#2855C5]">
+          <span className="text-xs font-bold tracking-wide uppercase text-purple-700">
             {course.levelLabel}
           </span>
         </div>
 
         {/* Course Title */}
-        <h3 className="mt-5 font-serif text-2xl font-bold text-[#101D36]">
+        <h3 className="mt-5 font-serif text-2xl font-bold text-[#180F2E]">
           {course.title}
         </h3>
 
         {/* Short Description */}
-        <p className="mt-3 text-sm leading-relaxed text-[#202A3A]/85">
+        <p className="mt-3 text-sm leading-relaxed text-[#180F2E]/85">
           {course.shortDescription}
         </p>
 
@@ -118,17 +118,17 @@ const TiltCourseCard: React.FC<CourseCardProps> = ({
               transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden"
             >
-              <div className="mt-4 rounded-xl border border-[#101D36]/10 bg-[#F8F9FC] p-4">
-                <p className="text-xs sm:text-sm leading-relaxed text-[#202A3A]/90">
+              <div className="mt-4 rounded-xl border border-purple-500/20 bg-[#FBF9FF] p-4">
+                <p className="text-xs sm:text-sm leading-relaxed text-[#180F2E]/90">
                   {course.extendedFocus}
                 </p>
-                <ul className="mt-3 space-y-1.5">
+                <ul className="mt-3 space-y-2">
                   {course.learningHighlights.map((highlight) => (
                     <li
                       key={highlight}
-                      className="flex items-start gap-2 text-xs text-[#101D36] font-medium"
+                      className="flex items-start gap-2 text-xs text-[#180F2E] font-medium"
                     >
-                      <Check className="h-3.5 w-3.5 mt-0.5 shrink-0 text-[#2855C5]" />
+                      <Check className="h-3.5 w-3.5 mt-0.5 shrink-0 text-purple-700" />
                       <span>{highlight}</span>
                     </li>
                   ))}
@@ -140,22 +140,22 @@ const TiltCourseCard: React.FC<CourseCardProps> = ({
       </div>
 
       {/* Card Actions: Learn More & Book a Class */}
-      <div className="mt-6 pt-5 border-t border-[#101D36]/10 flex items-center gap-3">
+      <div className="mt-6 pt-5 border-t border-purple-500/15 flex items-center gap-3">
         <button
           type="button"
           onClick={() => onToggleExpand(course.id)}
           aria-expanded={isExpanded}
-          className="flex-1 rounded-lg border border-[#101D36]/20 bg-[#F8F9FC] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#101D36] transition-colors duration-150 hover:border-[#2855C5] hover:bg-white hover:text-[#2855C5] whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2855C5]"
+          className="flex-1 rounded-xl border border-purple-500/25 bg-[#FBF9FF] px-4 py-2.5 text-xs sm:text-sm font-semibold text-purple-900 transition-colors duration-150 hover:border-purple-600 hover:bg-purple-100 hover:text-purple-950 whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
         >
-          {isExpanded ? 'Show Less' : 'Learn More'}
+          {isExpanded ? 'Show Less' : 'Syllabus & Details'}
         </button>
 
         <button
           type="button"
           onClick={() => onBookCourse(course.title)}
-          className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#2855C5] px-4 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs transition-all duration-150 hover:bg-[#101D36] whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101D36]"
+          className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm transition-all duration-150 hover:from-violet-500 hover:to-purple-500 whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-900"
         >
-          <span>Book a Class</span>
+          <span>Enquire Batch</span>
           <ArrowRight className="h-3.5 w-3.5 shrink-0" />
         </button>
       </div>
@@ -173,14 +173,8 @@ export const Courses: React.FC<CoursesProps> = ({ onSelectCourseAndBook }) => {
   return (
     <section
       id="courses"
-      className="relative overflow-hidden bg-[#F8F9FC] py-20 sm:py-24 lg:py-28 text-[#202A3A]"
+      className="relative overflow-hidden bg-[#FBF9FF] py-20 sm:py-24 lg:py-28 text-[#180F2E]"
     >
-      {/* Subtle 3D Books & Academic Symbols Background */}
-      <AcademicCanvas3D
-        variant="courses"
-        className="pointer-events-none absolute inset-0 opacity-30"
-      />
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -189,15 +183,16 @@ export const Courses: React.FC<CoursesProps> = ({ onSelectCourseAndBook }) => {
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2855C5]">
-            Academic Programmes
-          </p>
-          <h2 className="mt-2 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#101D36] text-balance">
-            Explore Our Learning Programmes
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/40 bg-purple-100/70 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-800">
+            <Sparkles className="h-3 w-3 text-purple-600" />
+            <span>NEET UG Programmes</span>
+          </div>
+          <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#180F2E] text-balance">
+            Target NEET &amp; Foundation Batches
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-[#202A3A]/85">
-            Personalised academic guidance structured across secondary, higher secondary,
-            undergraduate, and Master’s-level studies.
+          <p className="mt-3 text-base leading-relaxed text-[#180F2E]/85">
+            Purpose-built courses for Class 11, Class 12, Droppers &amp; Pre-Medical Aspirants.
+            Small batches with direct personal mentorship by Shubhajit Sir.
           </p>
         </motion.div>
 

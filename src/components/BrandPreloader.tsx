@@ -28,7 +28,7 @@ export const BrandPreloader: React.FC = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
           aria-hidden="true"
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#101D36] text-white pointer-events-none"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0B071E] text-white pointer-events-none"
         >
           <motion.div
             initial={{ opacity: 0, y: 8, scale: 0.96 }}
@@ -37,12 +37,12 @@ export const BrandPreloader: React.FC = () => {
             className="flex flex-col items-center text-center px-6"
           >
             <BrandLogo theme="dark" showTagline={true} size="lg" />
-            <div className="mt-6 h-0.5 w-36 overflow-hidden rounded-full bg-white/15">
+            <div className="mt-6 h-0.5 w-36 overflow-hidden rounded-full bg-purple-950">
               <motion.div
                 initial={{ x: '-100%' }}
                 animate={{ x: '0%' }}
                 transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                className="h-full w-full bg-gradient-to-r from-[#2855C5] via-[#F2B84B] to-[#F6C96E]"
+                className="h-full w-full bg-gradient-to-r from-violet-600 via-fuchsia-400 to-amber-400"
               />
             </div>
           </motion.div>

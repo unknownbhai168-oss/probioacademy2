@@ -13,6 +13,7 @@ import {
   createMoleculeGroup,
   createOpenBookGroup,
   createPencilGroup,
+  createHyperRealisticDNAGroup,
   type AcademicMaterialSet,
   type ParticleDatum,
 } from './academicModels';
@@ -146,10 +147,10 @@ const R3FEnvironmentAndLighting: React.FC<{ isSoftwareGl: boolean }> = ({ isSoft
 
   return (
     <>
-      <hemisphereLight args={[0xdbeafe, 0x101d36, 1.15]} />
-      <directionalLight position={[5.5, 6.5, 6.0]} intensity={2.2} color={0xfff1d6} />
-      <directionalLight position={[-6.0, -3.5, 4.0]} intensity={1.65} color={0x4f83ff} />
-      <pointLight position={[2.2, 2.0, 4.2]} intensity={1.8} distance={18} color={0xf2b84b} />
+      <hemisphereLight args={[0xd8b4fe, 0x13092d, 1.3]} />
+      <directionalLight position={[5.5, 6.5, 6.0]} intensity={2.4} color={0xa855f7} />
+      <directionalLight position={[-6.0, -3.5, 4.0]} intensity={1.8} color={0x06b6d4} />
+      <pointLight position={[2.2, 2.0, 4.2]} intensity={2.0} distance={18} color={0xf59e0b} />
     </>
   );
 };
@@ -209,10 +210,21 @@ const R3FSceneManager: React.FC<{
   const heroConfigs = useMemo<FloatingItemConfig[]>(() => {
     return [
       {
+        create: (mats, geos) => createHyperRealisticDNAGroup(mats, geos, true),
+        pos: [3.85, 1.85, 0.4],
+        rot: [0.35, 0.4, 0.2],
+        scale: 0.85,
+        floatAmp: 0.16,
+        floatFreq: 0.75,
+        rotSpeed: [0.06, 0.32, 0.04],
+        phase: 0.3,
+        parallaxDepth: 0.48,
+      },
+      {
         create: (mats, geos) => createGraduationCapGroup(mats, geos),
-        pos: [3.65, 2.25, 0.35],
+        pos: [-3.85, 2.25, 0.2],
         rot: [0.25, -0.5, 0.15],
-        scale: 0.9,
+        scale: 0.85,
         floatAmp: 0.14,
         floatFreq: 0.85,
         rotSpeed: [0.08, 0.24, 0.05],

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
-import { Check, GraduationCap } from 'lucide-react';
+import { Check, Dna, GraduationCap, Sparkles } from 'lucide-react';
 import {
   ACADEMY_INFO,
   BIO_PERSPECTIVES,
@@ -8,7 +8,6 @@ import {
   TEACHING_PHILOSOPHY,
 } from '../data/academyData';
 import { Qualifications } from './Qualifications';
-import { AcademicCanvas3D } from '../three/AcademicCanvas3D';
 
 export const TeacherProfile: React.FC = () => {
   const [activeLensId, setActiveLensId] = useState<string>(BIO_PERSPECTIVES[0].id);
@@ -27,14 +26,8 @@ export const TeacherProfile: React.FC = () => {
   return (
     <section
       id="teacher"
-      className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28 text-[#202A3A]"
+      className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28 text-[#180F2E]"
     >
-      {/* Subtle 3D Graduation Cap & Academic Elements */}
-      <AcademicCanvas3D
-        variant="teacher"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[560px] opacity-65"
-      />
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <motion.div
@@ -44,13 +37,14 @@ export const TeacherProfile: React.FC = () => {
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2855C5]">
-            Meet Your Mentor
-          </p>
-          <h2 className="mt-2 font-serif text-3xl sm:text-4xl lg:text-[2.65rem] font-bold tracking-tight text-[#101D36]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/40 bg-purple-100/70 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-800">
+            <Sparkles className="h-3 w-3 text-purple-600" />
+            <span>Meet Your Mentor</span>
+          </div>
+          <h2 className="mt-3 font-serif text-3xl sm:text-4xl lg:text-[2.65rem] font-bold tracking-tight text-[#180F2E]">
             SHUBHAJIT SIR
           </h2>
-          <p className="mt-2 text-sm sm:text-base font-medium text-[#2855C5]">
+          <p className="mt-2 text-sm sm:text-base font-semibold text-purple-700">
             Founder &amp; Academic Mentor · {ACADEMY_INFO.teachingRange}
           </p>
         </motion.div>
@@ -68,10 +62,10 @@ export const TeacherProfile: React.FC = () => {
             <div className="relative mx-auto max-w-md">
               <div
                 aria-hidden="true"
-                className="absolute -inset-3 rounded-2xl border border-[#F2B84B]/45 bg-[#F8F9FC]"
+                className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-purple-600/30 via-violet-400/20 to-amber-400/25 blur-sm"
               />
-              <div className="relative overflow-hidden rounded-2xl border border-[#101D36]/15 bg-[#101D36] shadow-xl">
-                <div className="aspect-[4/4.5] w-full overflow-hidden">
+              <div className="relative overflow-hidden rounded-2xl border-2 border-purple-500/30 bg-[#13092D] shadow-2xl">
+                <div className="aspect-[4/4.5] w-full overflow-hidden bg-purple-950">
                   {!portraitError ? (
                     <img
                       src={ACADEMY_INFO.teacherPhotoUrl}
@@ -81,8 +75,8 @@ export const TeacherProfile: React.FC = () => {
                       className="h-full w-full object-cover object-top"
                     />
                   ) : (
-                    <div className="flex h-full w-full flex-col items-center justify-center bg-[#101D36] p-8 text-center text-white">
-                      <GraduationCap className="h-14 w-14 text-[#F2B84B]" />
+                    <div className="flex h-full w-full flex-col items-center justify-center bg-[#13092D] p-8 text-center text-white">
+                      <GraduationCap className="h-14 w-14 text-amber-300" />
                       <p className="mt-4 font-serif text-xl font-bold">
                         {ACADEMY_INFO.teacherName}
                       </p>
@@ -91,13 +85,13 @@ export const TeacherProfile: React.FC = () => {
                 </div>
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#101D36]/85 to-transparent"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0B071E]/90 to-transparent"
                 />
                 <div className="relative z-10 -mt-14 px-6 pb-5">
                   <p className="font-serif text-lg font-bold text-white">
                     {ACADEMY_INFO.teacherName}
                   </p>
-                  <p className="text-xs text-[#F2B84B] font-medium">
+                  <p className="text-xs text-amber-300 font-medium">
                     {ACADEMY_INFO.brandDisplay}
                   </p>
                 </div>
@@ -113,26 +107,26 @@ export const TeacherProfile: React.FC = () => {
             transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7"
           >
-            <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-[#101D36] text-balance leading-snug">
-              An Interdisciplinary Foundation Built for Clarity and Reasoning
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#180F2E] text-balance leading-snug">
+              An Interdisciplinary Edge Engineered for NEET UG Success
             </h3>
 
-            <p className="mt-5 text-base sm:text-lg leading-relaxed text-[#202A3A]/90">
+            <p className="mt-5 text-base sm:text-lg leading-relaxed text-[#180F2E]/90">
               {TEACHER_BIOGRAPHY}
             </p>
 
             {/* Teaching Philosophy Summary List */}
-            <div className="mt-8 rounded-xl border border-[#101D36]/10 bg-[#F8F9FC] p-6">
-              <h4 className="font-serif text-base font-bold uppercase tracking-wider text-[#101D36]">
-                Core Teaching Philosophy
+            <div className="mt-8 rounded-2xl border border-purple-500/20 bg-[#FBF9FF] p-6">
+              <h4 className="font-serif text-base font-bold uppercase tracking-wider text-purple-900">
+                Core NEET Teaching Principles
               </h4>
               <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {TEACHING_PHILOSOPHY.map((point) => (
                   <li
                     key={point}
-                    className="flex items-start gap-2.5 text-sm text-[#202A3A]"
+                    className="flex items-start gap-2.5 text-sm text-[#180F2E]"
                   >
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#2855C5]/12 text-[#2855C5]">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-600/15 text-violet-700">
                       <Check className="h-3.5 w-3.5" />
                     </span>
                     <span>{point}</span>
@@ -148,14 +142,14 @@ export const TeacherProfile: React.FC = () => {
           <Qualifications />
         </div>
 
-        {/* Part 2: Dedicated Dynamic Bio Presentation with Teacher's Image as Full Background */}
+        {/* Part 2: Dedicated Dynamic Bio Presentation with Purplish Scrim */}
         <div
           id="dynamic-bio-stage"
           ref={bioStageRef}
           aria-label="Dynamic Mentor Bio Presentation"
-          className="relative mt-16 overflow-hidden rounded-2xl border border-[#101D36]/20 bg-[#101D36] text-white shadow-2xl min-h-[520px] sm:min-h-[560px] flex items-center"
+          className="relative mt-16 overflow-hidden rounded-3xl border border-purple-500/30 bg-[#0B071E] text-white shadow-2xl min-h-[520px] sm:min-h-[560px] flex items-center"
         >
-          {/* Full-bleed background layer using Shubhajit Sir's actual photograph */}
+          {/* Full-bleed background layer using Shubhajit Sir's photograph */}
           {!portraitError && (
             <motion.div
               aria-hidden="true"
@@ -166,33 +160,34 @@ export const TeacherProfile: React.FC = () => {
                 src={ACADEMY_INFO.teacherPhotoUrl}
                 alt=""
                 referrerPolicy="no-referrer"
-                className="h-full w-full object-cover object-[50%_15%] sm:object-[78%_18%] opacity-65 sm:opacity-75"
+                className="h-full w-full object-cover object-[50%_15%] sm:object-[78%_18%] opacity-50 sm:opacity-60"
               />
             </motion.div>
           )}
 
-          {/* Measured directional dark midnight-navy scrim for >= 8:1 text contrast while keeping portrait visible */}
+          {/* Purplish directional scrim */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 z-10 bg-gradient-to-t from-[#101D36] via-[#101D36]/88 to-[#101D36]/50 lg:bg-gradient-to-r lg:from-[#101D36]/96 lg:via-[#101D36]/82 lg:to-[#101D36]/30"
+            className="absolute inset-0 z-10 bg-gradient-to-t from-[#0B071E] via-[#0B071E]/90 to-[#0B071E]/50 lg:bg-gradient-to-r lg:from-[#0B071E]/98 lg:via-[#0B071E]/85 lg:to-[#0B071E]/30"
           />
 
           {/* Dynamic Interactive Bio Foreground */}
           <div className="relative z-20 w-full p-6 sm:p-10 lg:p-14">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#F2B84B]">
-                Dynamic Mentor Perspective · {ACADEMY_INFO.teacherName}
-              </p>
+              <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/40 bg-purple-950/70 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-300">
+                <Dna className="h-3.5 w-3.5 text-cyan-400" />
+                <span>Interdisciplinary NEET Edge · {ACADEMY_INFO.teacherName}</span>
+              </div>
 
               <h3 className="mt-3 font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white text-balance leading-tight">
-                How Three Disciplines Shape Every Lesson
+                How Three Disciplines Deliver 340+ in Biology
               </h3>
 
               {/* Interactive Perspective Switcher */}
               <div
                 role="tablist"
                 aria-label="Interdisciplinary Teaching Perspectives"
-                className="mt-6 inline-flex flex-wrap gap-2 rounded-xl bg-[#091121]/75 p-1.5 border border-white/15"
+                className="mt-6 inline-flex flex-wrap gap-2 rounded-2xl bg-[#1D1042]/85 p-1.5 border border-purple-500/30"
               >
                 {BIO_PERSPECTIVES.map((perspective) => {
                   const selected = perspective.id === activePerspective.id;
@@ -203,10 +198,10 @@ export const TeacherProfile: React.FC = () => {
                       role="tab"
                       aria-selected={selected}
                       onClick={() => setActiveLensId(perspective.id)}
-                      className={`rounded-lg px-4 py-2 text-xs sm:text-sm font-medium transition-all duration-150 whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2B84B] ${
+                      className={`rounded-xl px-4 py-2.5 text-xs sm:text-sm font-medium transition-all duration-150 whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 ${
                         selected
-                          ? 'bg-[#F2B84B] text-[#101D36] font-semibold shadow-sm'
-                          : 'text-slate-200 hover:text-white hover:bg-white/10'
+                          ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold shadow-md'
+                          : 'text-violet-200 hover:text-white hover:bg-white/10'
                       }`}
                     >
                       {perspective.label}
@@ -225,20 +220,20 @@ export const TeacherProfile: React.FC = () => {
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
                     role="tabpanel"
-                    className="rounded-xl border border-white/15 bg-[#101D36]/85 p-6 shadow-lg"
+                    className="rounded-2xl border border-purple-500/25 bg-[#170E38]/90 p-6 shadow-xl backdrop-blur-md"
                   >
-                    <p className="text-xs font-semibold uppercase tracking-wider text-[#F2B84B]">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-amber-300">
                       {activePerspective.qualificationTag}
                     </p>
                     <h4 className="mt-2 font-serif text-xl sm:text-2xl font-bold text-white">
                       {activePerspective.headline}
                     </h4>
-                    <p className="mt-3 text-sm sm:text-base leading-relaxed text-slate-200">
+                    <p className="mt-3 text-sm sm:text-base leading-relaxed text-violet-100/90">
                       {activePerspective.summary}
                     </p>
-                    <div className="mt-4 pt-4 border-t border-white/10">
-                      <p className="text-xs sm:text-sm text-[#F6C96E]">
-                        <strong className="font-semibold text-white">In the Classroom: </strong>
+                    <div className="mt-4 pt-4 border-t border-purple-500/25">
+                      <p className="text-xs sm:text-sm text-cyan-300">
+                        <strong className="font-semibold text-white">In the NEET Classroom: </strong>
                         {activePerspective.classroomApplication}
                       </p>
                     </div>

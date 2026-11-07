@@ -3,7 +3,9 @@ import { MotionConfig } from 'framer-motion';
 import { BrandPreloader } from './components/BrandPreloader';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { DnaExplorerSection } from './components/DnaExplorerSection';
 import { About } from './components/About';
+import { StudentBatchShowcase } from './components/StudentBatchShowcase';
 import { TeacherProfile } from './components/TeacherProfile';
 import { Courses } from './components/Courses';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -33,7 +35,7 @@ export function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen flex flex-col bg-[#F8F9FC] text-[#202A3A]">
+      <div className="min-h-screen flex flex-col bg-[#FBF9FF] text-[#180F2E]">
         <BrandPreloader />
         <Navbar onBookClassClick={() => scrollToSection('admission')} />
 
@@ -41,8 +43,11 @@ export function App() {
           <Hero
             onExploreCourses={() => scrollToSection('courses')}
             onBookDemo={() => scrollToSection('admission')}
+            onViewStudents={() => scrollToSection('students-batch')}
           />
+          <DnaExplorerSection />
           <About />
+          <StudentBatchShowcase />
           <TeacherProfile />
           <Courses onSelectCourseAndBook={handleSelectCourseAndBook} />
           <WhyChooseUs />

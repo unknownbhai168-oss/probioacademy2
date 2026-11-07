@@ -1,6 +1,6 @@
 {
   "name": "ProBio Academy",
-  "description": "Explore ProBio Academy, offering academic guidance from Class 9 to Master's level. Connect with Shubhajit Sir to enquire about courses and book a demo class.",
+  "description": "ProBio Academy offers premier NEET UG Biology and Medical Entrance Coaching for Class 11, Class 12, and Droppers in Kolkata by Shubhajit Sir, featuring hyper-realistic 3D molecular biology and NCERT mastery.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

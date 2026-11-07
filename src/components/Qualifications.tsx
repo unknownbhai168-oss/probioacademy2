@@ -8,11 +8,11 @@ const QualificationIcon: React.FC<{ name: QualificationItem['iconName'] }> = ({
 }) => {
   switch (name) {
     case 'engineering':
-      return <Compass className="h-6 w-6 text-[#F2B84B]" />;
+      return <Compass className="h-6 w-6 text-amber-300" />;
     case 'law':
-      return <Scale className="h-6 w-6 text-[#F2B84B]" />;
+      return <Scale className="h-6 w-6 text-amber-300" />;
     case 'english':
-      return <BookOpenText className="h-6 w-6 text-[#F2B84B]" />;
+      return <BookOpenText className="h-6 w-6 text-amber-300" />;
   }
 };
 
@@ -30,24 +30,24 @@ export const Qualifications: React.FC = () => {
             delay: idx * 0.08,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className="group relative rounded-xl border border-[#101D36]/12 bg-[#F8F9FC] p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#2855C5]/40 hover:bg-white hover:shadow-lg"
+          className="group relative rounded-2xl border border-purple-500/20 bg-[#FBF9FF] p-6 transition-all duration-200 hover:-translate-y-1 hover:border-purple-500/50 hover:bg-white hover:shadow-xl"
         >
           <div className="flex items-center justify-between">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#101D36] shadow-sm transition-transform duration-200 group-hover:scale-105">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#13092D] shadow-sm transition-transform duration-200 group-hover:scale-105">
               <QualificationIcon name={qual.iconName} />
             </div>
-            <span className="text-xs font-semibold tracking-wider uppercase text-[#2855C5]">
-              Qualification 0{idx + 1}
+            <span className="text-xs font-semibold tracking-wider uppercase text-purple-700">
+              Advantage 0{idx + 1}
             </span>
           </div>
 
-          <h3 className="mt-5 font-serif text-xl font-bold text-[#101D36]">
+          <h3 className="mt-5 font-serif text-xl font-bold text-[#180F2E]">
             {qual.title}
           </h3>
-          <p className="mt-1 text-xs font-medium text-[#2855C5]">
+          <p className="mt-1 text-xs font-semibold text-purple-700">
             {qual.discipline}
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-[#202A3A]/85">
+          <p className="mt-3 text-sm leading-relaxed text-[#180F2E]/85">
             {qual.description}
           </p>
         </motion.div>

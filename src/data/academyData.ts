@@ -56,14 +56,16 @@ export interface FaqItem {
 export const ACADEMY_INFO = {
   name: 'PROBIO ACADEMY',
   brandDisplay: 'ProBio Academy',
-  tagline: 'Where Knowledge Meets Excellence.',
+  tagline: 'Where Biological Concepts Meet NEET Excellence.',
   teacherName: 'Shubhajit Sir',
   teacherPhotoUrl: '/assets/aistudio/image_b76088bf.png',
+  studentGroupPhotoUrl: '/assets/aistudio/image_48a471f3.png',
   phoneDisplay: '+91 89818 00375',
   phoneHref: 'tel:+918981800375',
   whatsappNumber: '918981800375',
   whatsappBaseUrl: 'https://wa.me/918981800375',
-  teachingRange: "Class 9 to Master's Degree level",
+  teachingRange: 'NEET UG (Class 11, Class 12 & Droppers) · Class 9–10 Foundation',
+  neetFocusHeadline: 'Dedicated NEET UG Biology & Medical Entrance Coaching in Kolkata',
   addressLines: [
     '9/1, Bireswar Dhole Ln,',
     'Bonhoogly, Baranagar,',
@@ -90,255 +92,256 @@ export const ACADEMY_INFO = {
 
 export const NAV_LINKS = [
   { label: 'Home', href: '#home', id: 'home' },
-  { label: 'About', href: '#about', id: 'about' },
+  { label: 'DNA 3D Lab', href: '#dna-explorer', id: 'dna-explorer' },
+  { label: 'NEET Courses', href: '#courses', id: 'courses' },
+  { label: 'Our Students', href: '#students-batch', id: 'students-batch' },
   { label: 'Our Teacher', href: '#teacher', id: 'teacher' },
-  { label: 'Courses', href: '#courses', id: 'courses' },
   { label: 'Why Choose Us', href: '#why-choose-us', id: 'why-choose-us' },
+  { label: 'Admissions', href: '#admission', id: 'admission' },
   { label: 'Contact', href: '#contact', id: 'contact' },
 ] as const;
 
 export const ABOUT_HIGHLIGHTS = [
   {
-    title: 'Conceptual Understanding',
-    detail: 'Building genuine comprehension of core principles rather than surface-level memorisation.',
+    title: 'NCERT Line-by-Line Mastery',
+    detail: 'Complete decoding of every biological diagram, terminology, summary table, and hidden nuance essential for NEET UG.',
   },
   {
-    title: 'Personalised Academic Guidance',
-    detail: 'Tailoring explanations and pacing to match each student’s individual learning requirements.',
+    title: '3D Bio-Molecular Conceptualisation',
+    detail: 'Visualise DNA replication, transcription, translation, and physiological pathways in 3D for deep, permanent retention.',
   },
   {
-    title: 'Structured Learning',
-    detail: 'Organising every topic into clear, logical progressions for steady academic development.',
+    title: 'Assertion-Reasoning & MCQ Tactics',
+    detail: 'Methodical logical deduction to eliminate deceptive options and master modern NEET statement-based questions.',
   },
   {
-    title: 'Doubt-Clearing Support',
-    detail: 'Dedicated space to ask questions openly until every concept is thoroughly understood.',
+    title: 'Dedicated Doubt-Clearing Support',
+    detail: 'One-on-one time to ask questions openly until every biological concept and numerical doubt is thoroughly resolved.',
   },
   {
-    title: 'Academic Development',
-    detail: 'Nurturing analytical thinking, independent reasoning, and confident expression.',
+    title: 'Dropper & Repeater Strategy',
+    detail: 'Tailored study roadmaps for gap-year aspirants to identify previous score bottlenecks and rebuild 340+ Biology confidence.',
   },
   {
-    title: 'Student-Focused Teaching',
-    detail: 'A supportive learning environment centred around clarity, curiosity, and steady growth.',
+    title: 'Timed Speed & Accuracy Tests',
+    detail: 'Regular OMR-based practice simulating strict NEET examination timing, question-skipping strategy, and zero negative-marking discipline.',
   },
 ] as const;
 
 export const TEACHER_BIOGRAPHY =
-  'Shubhajit Sir brings an interdisciplinary academic perspective to teaching, with educational backgrounds spanning Engineering, Law and English Honours. His diverse academic foundation brings together analytical thinking, structured reasoning and communication skills to support a meaningful learning experience.';
+  'Shubhajit Sir brings a unique, high-impact interdisciplinary perspective to NEET UG coaching and academic mentoring. With academic qualifications spanning an Engineering Degree, Bachelor of Laws (LL.B.), and English Honours, his mentorship combines quantitative modeling, razor-sharp logical deduction, and linguistic clarity. This rare multidisciplinary approach equips NEET aspirants, Class 11–12 students, and droppers with the analytical power to conquer tricky assertion-reasoning questions, multi-statement questions, and complex biochemical mechanisms without relying on rote memorisation.';
 
 export const QUALIFICATIONS: QualificationItem[] = [
   {
     id: 'engineering',
     title: 'Engineering Degree',
-    discipline: 'Analytical & Quantitative Foundation',
+    discipline: 'Analytical Modeling & Quantitative Bio-Energetics',
     description:
-      'Brings systematic problem-solving, analytical precision, and structured conceptual breakdown to complex academic topics.',
+      'Applies systematic problem-solving, flowchart modeling, and quantitative analysis to genetics numericals, Hardy-Weinberg equilibrium, and molecular pathways.',
     iconName: 'engineering',
   },
   {
     id: 'llb',
     title: 'Bachelor of Laws (LL.B.)',
-    discipline: 'Structured Reasoning & Critical Inquiry',
+    discipline: 'Rigorous Logic & Assertion-Reasoning Precision',
     description:
-      'Cultivates disciplined logical argumentation, methodical interpretation, and clarity of reasoning in every lesson.',
+      'Trains medical aspirants in disciplined logical scrutiny to analyze complex Assertion & Reasoning questions and avoid high-penalty distractor options.',
     iconName: 'law',
   },
   {
     id: 'english',
     title: 'English Honours',
-    discipline: 'Articulate Expression & Comprehension',
+    discipline: 'Nuanced Text Comprehension & Statement Decoding',
     description:
-      'Strengthens linguistic clarity, nuanced reading comprehension, and effective academic communication.',
+      'Enables rapid, accurate comprehension of lengthy NCERT multi-statement questions and subtle medical entrance terminology under strict exam clock pressure.',
     iconName: 'english',
   },
 ];
 
 export const TEACHING_PHILOSOPHY = [
-  'Focus on conceptual clarity.',
-  'Encouragement of independent thinking.',
-  'Structured academic guidance.',
-  'A supportive learning environment.',
-  'Attention to individual learning needs.',
+  'Focus on deep conceptual clarity rather than rote memorisation.',
+  'Line-by-line NCERT mastery with 3D molecular visualization.',
+  'Disciplined assertion-reasoning logic to eliminate negative marks.',
+  'Dedicated personal doubt resolution for every student.',
+  'Targeted test analysis and strategic score optimization for Droppers and 11-12 batches.',
 ] as const;
 
 export const BIO_PERSPECTIVES: BioPerspective[] = [
   {
     id: 'analytical',
-    label: 'Analytical Thinking',
+    label: 'Engineering Logic for NEET',
     qualificationTag: 'Engineering Degree Perspective',
-    headline: 'Clarity Through Structured Breakdown',
+    headline: 'Deconstructing Complex Pathways into Logical Systems',
     summary:
-      'Complex ideas become approachable when broken into clear, foundational steps. Lessons emphasise why a principle works before moving to application.',
+      'In NEET Biology, students often struggle with intricate metabolic cycles and molecular genetics. Using engineering system frameworks, respiration, photosynthesis, and DNA replication are taught as elegant logical circuits rather than dry lists of steps.',
     classroomApplication:
-      'Students build confidence by understanding underlying logic rather than relying on rote repetition.',
+      'Students master genetics numericals, pedigree charts, and biochemical cascades with effortless clarity.',
   },
   {
     id: 'reasoning',
-    label: 'Structured Reasoning',
+    label: 'Legal Precision for A&R Questions',
     qualificationTag: 'Bachelor of Laws (LL.B.) Perspective',
-    headline: 'Disciplined Inquiry & Independent Thought',
+    headline: 'Eliminating Trap Options with Razor-Sharp Scrutiny',
     summary:
-      'Every question is an opportunity to examine assumptions, connect ideas methodically, and form well-reasoned conclusions.',
+      'Modern NEET Biology papers are packed with Assertion-Reasoning and multi-statement questions where tiny qualifiers (such as "always", "mostly", or "all") create costly negative marks. Shubhajit Sir trains students to dissect statements like legal clauses.',
     classroomApplication:
-      'Encourages independent thinking and structured presentation across academic levels.',
+      'Aspirants develop the critical scrutiny needed to secure the full 4 marks without second-guessing.',
   },
   {
     id: 'communication',
-    label: 'Clear Communication',
+    label: 'Linguistic Speed & NCERT Decoding',
     qualificationTag: 'English Honours Perspective',
-    headline: 'Precision in Language & Understanding',
+    headline: 'Mastering Dense NCERT Vocabulary Under Clock Pressure',
     summary:
-      'True mastery shows when a student can explain an idea clearly in their own words. Explanations are crafted to be lucid, accessible, and engaging.',
+      'NEET Biology requires reading over 90 complex questions in approximately 45 minutes. An English Honours background ensures explanations are articulate and teaches students how to scan, comprehend, and extract core biological premises instantly.',
     classroomApplication:
-      'Supports articulate expression and deeper comprehension tailored to each learner’s pace.',
+      'Students build rapid reading fluency and linguistic precision, saving precious minutes for physics and chemistry.',
   },
 ];
 
 /**
- * Editable Course & Programme catalogue.
- * Update titles, descriptions, or highlights directly here without changing component code.
+ * High-Yield NEET UG, Class 11, Class 12, Droppers & Foundation Catalogue.
  */
 export const COURSES: CourseProgramme[] = [
   {
-    id: 'class-9',
-    levelLabel: 'Secondary Foundation',
-    title: 'Class 9',
+    id: 'neet-droppers',
+    levelLabel: 'Intensive Repeater Batch',
+    title: 'Target NEET — Droppers & Repeaters',
     shortDescription:
-      'Building strong conceptual foundations, analytical curiosity, and structured study habits at a pivotal academic stage.',
+      'Full-throttle 1-year dedicated program engineered specifically for gap-year aspirants aiming for a 340+ Biology score and top medical ranks.',
     extendedFocus:
-      'Focuses on clear concept formation, regular practice, and attentive doubt-clearing so students transition smoothly into higher secondary studies.',
+      'Rigorous coverage of the entire Class 11 and 12 NEET syllabus. Focuses on identifying past score bottlenecks, line-by-line NCERT dissection, daily 90-MCQ speed drills, OMR test series, and personalized mentor sessions to eliminate negative marking.',
     learningHighlights: [
-      'Foundational conceptual clarity',
-      'Individual attention to learning pace',
-      'Regular guided practice & doubt resolution',
+      'Comprehensive 11th & 12th syllabus consolidation',
+      'Daily timed NCERT-based MCQ tests & negative-marking audits',
+      'One-on-one personal doubt-clearing with Shubhajit Sir',
     ],
-    iconName: 'book',
+    iconName: 'award',
   },
   {
-    id: 'class-10',
-    levelLabel: 'Secondary Milestone',
-    title: 'Class 10',
+    id: 'class-12-neet',
+    levelLabel: 'Class 12 & NEET UG',
+    title: 'Class 12 Boards + NEET Mastery',
     shortDescription:
-      'Structured academic guidance designed to deepen understanding, strengthen problem-solving accuracy, and build steady confidence.',
+      'Dual-track program synchronizing Board examination presentation excellence with high-speed NEET competitive mastery.',
     extendedFocus:
-      'Emphasises thorough conceptual mastery, consistent practice, and identifying learning gaps early through personalised feedback.',
+      'Complete mastery of Class 12 Biology: Reproduction, Genetics & Evolution, Biology in Human Welfare, Biotechnology & Ecology. Balances descriptive Board answer writing with fast-paced Assertion-Reasoning and diagrammatic MCQ drills.',
     learningHighlights: [
-      'Step-by-step concept reinforcement',
-      'Structured practice and revision',
-      'Supportive doubt-clearing sessions',
-    ],
-    iconName: 'compass',
-  },
-  {
-    id: 'class-11',
-    levelLabel: 'Higher Secondary Transition',
-    title: 'Class 11',
-    shortDescription:
-      'Bridging the leap into advanced concepts with clear explanations, independent thinking, and disciplined academic mentorship.',
-    extendedFocus:
-      'Helps students adapt to deeper analytical concepts with patient, structured guidance tailored to individual learning needs.',
-    learningHighlights: [
-      'Deep conceptual understanding from first principles',
-      'Encouragement of independent analytical thinking',
-      'Personalised academic guidance',
-    ],
-    iconName: 'atom',
-  },
-  {
-    id: 'class-12',
-    levelLabel: 'Higher Secondary Completion',
-    title: 'Class 12',
-    shortDescription:
-      'Focused mentorship combining conceptual depth, regular practice, and clear articulation for higher secondary excellence.',
-    extendedFocus:
-      'Supports students in consolidating core concepts, resolving doubts promptly, and refining structured academic presentation.',
-    learningHighlights: [
-      'Comprehensive conceptual clarity',
-      'Targeted doubt-clearing & gap resolution',
-      'Structured practice for steady progress',
+      'Simultaneous Board exam theory & NEET MCQ mastery',
+      'Deep dive into Biotechnology, Genetics & Molecular Biology',
+      'Regular full-length mock tests and chapter-wise revisions',
     ],
     iconName: 'layers',
   },
   {
-    id: 'undergraduate',
-    levelLabel: 'Higher Education',
-    title: 'Undergraduate Programmes',
+    id: 'class-11-neet',
+    levelLabel: 'Class 11 Pre-Medical',
+    title: 'Class 11 NEET & Biology Foundation',
     shortDescription:
-      'Interdisciplinary academic mentorship supporting deeper subject exploration, critical reasoning, and structured study at the degree level.',
+      'Smooth transition from Class 10 into high-yield medical entrance depth with 3D molecular visualization and first-principles learning.',
     extendedFocus:
-      'Guided academic support tailored to undergraduate coursework, fostering independent reasoning and conceptual rigour.',
+      'Class 11 carries nearly 50% of the NEET Biology paper. Master Diversity in Living World, Structural Organisation, Cell Structure & Function, Plant Physiology, and Human Physiology with interactive 3D models and clear concept notes.',
     learningHighlights: [
-      'In-depth conceptual & theoretical clarity',
-      'Structured reasoning and critical analysis',
-      'Personalised one-to-one academic guidance',
+      'First-principles clarity on high-yield physiology and cytology',
+      '3D DNA & macromolecular visualization for permanent memory',
+      'Early introduction to NEET MCQ patterns and analytical thinking',
     ],
-    iconName: 'graduation',
+    iconName: 'atom',
   },
   {
-    id: 'postgraduate',
-    levelLabel: 'Advanced Scholarship',
-    title: "Postgraduate / Master's Level",
+    id: 'neet-crash-doubt',
+    levelLabel: 'High-Yield Drill',
+    title: 'NEET High-Yield MCQ & Doubt-Buster',
     shortDescription:
-      'Specialised academic guidance for Master’s-level learners seeking conceptual depth, analytical clarity, and scholarly precision.',
+      'Fast-paced question-solving module focused on previous years papers, high-weightage topics, and dedicated doubt resolution.',
     extendedFocus:
-      'Supports advanced learners through structured discussion, independent inquiry, and clear articulation of complex ideas.',
+      'Tailored for students seeking intensive question practice. Covers tricky Assertion-Reasoning sets, NCERT summary charts, scientist contributions, and high-frequency examination traps with detailed step-by-step reasoning.',
     learningHighlights: [
-      'Advanced conceptual & analytical mentorship',
-      'Independent critical inquiry & synthesis',
-      'Tailored guidance for individual academic goals',
+      'Over 2,500+ curated NEET standard practice questions',
+      'Assertion-Reasoning & Statement-based question strategies',
+      'Rapid error analysis and weak-zone remediation',
     ],
-    iconName: 'award',
+    iconName: 'compass',
+  },
+  {
+    id: 'class-10-foundation',
+    levelLabel: 'Pre-Medical Launchpad',
+    title: 'Class 10 Pre-Medical Foundation',
+    shortDescription:
+      'Deepening scientific rigor, life processes, and analytical reasoning to secure top board marks while preparing for Class 11 medical entrance.',
+    extendedFocus:
+      'Covers Class 10 Biology and Science foundations thoroughly: Life Processes, Control & Coordination, How Organisms Reproduce, and Heredity, instilling early analytical curiosity and scientific confidence.',
+    learningHighlights: [
+      'Comprehensive Board exam conceptual mastery',
+      'Early foundation for Class 11 Medical Entrance concepts',
+      'Interactive doubt resolution and structured test series',
+    ],
+    iconName: 'book',
+  },
+  {
+    id: 'class-9-foundation',
+    levelLabel: 'Early Foundation',
+    title: 'Class 9 Science & Biology Foundation',
+    shortDescription:
+      'Building rock-solid conceptual roots, scientific inquiry, and disciplined study habits at the start of secondary education.',
+    extendedFocus:
+      'Emphasises cell theory, tissue architecture, improvement in food resources, and fundamental science principles, ensuring students develop curiosity and confidence long before high school board exams.',
+    learningHighlights: [
+      'Crystal-clear fundamental biology concepts',
+      'Guided problem-solving and patient doubt-clearing',
+      'Individual attention matched to each student’s pace',
+    ],
+    iconName: 'graduation',
   },
 ];
 
 export const WHY_CHOOSE_US: WhyChooseItem[] = [
   {
-    id: 'personalised-attention',
+    id: 'neet-focused',
     number: '01',
-    title: 'Personalised Attention',
+    title: 'Dedicated NEET UG Focus',
     description:
-      'Every student learns differently. Guidance is adapted to each learner’s pace, questions, and individual academic needs.',
+      'Targeted pedagogy designed specifically for Class 11, Class 12, and Droppers aiming for 340+ marks in NEET Biology.',
     iconName: 'userCheck',
   },
   {
-    id: 'concept-based',
+    id: 'ncert-molecular',
     number: '02',
-    title: 'Concept-Based Learning',
+    title: 'Line-by-Line NCERT & 3D Visualisation',
     description:
-      'Emphasis on understanding core principles deeply so students can reason through problems independently rather than memorising.',
+      'Every line, diagram, and table decoded with interactive 3D DNA and cell models for permanent conceptual retention.',
     iconName: 'lightbulb',
   },
   {
     id: 'interdisciplinary',
     number: '03',
-    title: 'Interdisciplinary Academic Guidance',
+    title: 'Interdisciplinary Mentor Edge',
     description:
-      'Informed by backgrounds in Engineering, Law, and English Honours to unite analytical rigour, logic, and clear expression.',
+      'Guided by Shubhajit Sir (Engineering, LL.B., English Honours) to combine quantitative modeling, legal logic, and reading speed.',
     iconName: 'layers',
   },
   {
-    id: 'doubt-clearing',
+    id: 'unrestricted-doubts',
     number: '04',
-    title: 'Doubt-Clearing Support',
+    title: 'Unrestricted Doubt-Clearing',
     description:
-      'An open, encouraging atmosphere where students are welcomed to ask questions until every doubt is resolved with clarity.',
+      'An encouraging, zero-hesitation classroom environment where every question is welcomed and solved patiently.',
     iconName: 'messageCircle',
   },
   {
-    id: 'structured-learning',
+    id: 'dropper-strategy',
     number: '05',
-    title: 'Structured Learning',
+    title: 'Specialised Dropper Batch Support',
     description:
-      'Well-organised progression from foundational concepts to deeper exploration and regular practice.',
+      'Customized test series, time management techniques, and mistake-analysis logs designed to maximize repeater scores.',
     iconName: 'compass',
   },
   {
-    id: 'supportive-environment',
+    id: 'supportive-community',
     number: '06',
-    title: 'Supportive Learning Environment',
+    title: 'Supportive Classroom Community',
     description:
-      'A calm, respectful, and motivating space that encourages curiosity, steady effort, and academic confidence.',
+      'A motivating, energetic peer group of future doctors in Baranagar, Kolkata, pushing each other to academic excellence.',
     iconName: 'heartHandshake',
   },
 ];
@@ -346,126 +349,126 @@ export const WHY_CHOOSE_US: WhyChooseItem[] = [
 export const METHODOLOGY_STEPS: MethodologyStep[] = [
   {
     step: '01',
-    title: 'Understand',
-    description: 'Build strong foundations through clear explanations.',
+    title: 'Deconstruct',
+    description: 'Break down complex NCERT biology topics with first-principles clarity.',
     detail:
-      'Every topic begins with lucid, unhurried explanation of core principles so students grasp the foundational logic.',
+      'Every topic begins with intuitive biological principles and 3D molecular visualization so students see how biological systems actually function.',
   },
   {
     step: '02',
-    title: 'Explore',
-    description: 'Develop deeper subject understanding and independent thinking.',
+    title: 'Analyze',
+    description: 'Master Assertion-Reasoning and critical statement scrutiny.',
     detail:
-      'Guided questioning and interdisciplinary perspectives encourage learners to think independently and connect ideas.',
+      'Using structured legal logic, students learn to dissect deceptive distractors in NEET multiple-choice questions without second-guessing.',
   },
   {
     step: '03',
-    title: 'Practise',
-    description: 'Strengthen learning through regular practice.',
+    title: 'Drill',
+    description: 'Timed OMR practice to master speed, accuracy, and negative marking control.',
     detail:
-      'Consistent, structured exercises reinforce comprehension and build fluency in applying concepts.',
+      'Consistent chapter-wise and cumulative mock tests simulate actual NEET exam stress and hone question-selection instincts.',
   },
   {
     step: '04',
-    title: 'Improve',
-    description: 'Identify learning gaps and work towards academic progress.',
+    title: 'Remediate',
+    description: 'Personalized error-log audits and one-on-one doubt clearance.',
     detail:
-      'Attentive feedback and dedicated doubt-clearing help address specific gaps and support continuous improvement.',
+      'Targeted analysis of every missed question with Shubhajit Sir ensures weak concepts are identified and turned into scoring strengths.',
   },
 ];
 
 export const STUDENT_EXPERIENCE_PILLARS: ExperiencePillar[] = [
   {
     id: 'focused-guidance',
-    title: 'Focused Academic Guidance',
+    title: 'NEET-Centric Mentorship',
     description:
-      'Uncluttered, attentive mentorship designed to keep every session purposeful and aligned with the student’s academic goals.',
+      'Purpose-built coaching aligned with the latest NTA NEET UG pattern, high-yield topics, and NCERT revisions.',
     iconName: 'target',
   },
   {
     id: 'clear-explanations',
-    title: 'Clear Explanations',
+    title: '3D Molecular Clarity',
     description:
-      'Complex concepts communicated in straightforward, well-structured language that makes learning approachable.',
+      'Complex molecular genetics, bio-energetics, and human physiology brought to life with clear visual demonstrations.',
     iconName: 'bookOpen',
   },
   {
     id: 'individual-attention',
     title: 'Individual Attention',
     description:
-      'Close attention to how each student thinks, processes new ideas, and progresses through their coursework.',
+      'Small batch sizes ensure Shubhajit Sir tracks each student’s question-solving speed and concept retention closely.',
     iconName: 'user',
   },
   {
     id: 'doubt-resolution',
-    title: 'Doubt Resolution',
+    title: 'Patient Doubt Clearance',
     description:
-      'Prompt, patient clarification of questions so small misunderstandings never accumulate into larger hurdles.',
+      'Dedicated doubt slots before and after class so no confusion is carried home or allowed to linger before exam day.',
     iconName: 'helpCircle',
   },
   {
     id: 'structured-learning-exp',
-    title: 'Structured Learning',
+    title: 'Structured Revision Cycles',
     description:
-      'A clear roadmap through every topic, balancing conceptual explanation with guided practice and review.',
+      'Systematic spaced-repetition roadmaps ensuring earlier chapters remain fresh as syllabus advances.',
     iconName: 'listChecks',
   },
   {
     id: 'supportive-interaction',
-    title: 'Supportive Interaction',
+    title: 'Inspiring Classroom Culture',
     description:
-      'Respectful, encouraging dialogue that helps students feel comfortable asking questions and thinking critically.',
+      'An authentic, warm, and highly motivated batch of aspirants working collectively toward medical admissions.',
     iconName: 'users',
   },
 ];
 
 export const FAQ_ITEMS: FaqItem[] = [
   {
-    id: 'classes-taught',
-    question: 'Which classes does ProBio Academy teach?',
+    id: 'neet-focus',
+    question: 'What is the primary focus of ProBio Academy?',
     answer:
-      "ProBio Academy offers academic coaching and personalised guidance from Class 9 all the way up to the Master's Degree level, covering Classes 9, 10, 11, 12, Undergraduate Programmes, and Postgraduate / Master's Level studies.",
+      'ProBio Academy focuses on premier NEET UG Medical Entrance Preparation with dedicated batches for Class 11, Class 12, and Droppers / Repeaters, along with Pre-Medical Foundations for Class 9 and 10.',
   },
   {
-    id: 'undergraduate',
-    question: 'Does the academy offer classes for undergraduate students?',
+    id: 'dropper-batch',
+    question: 'Is there a dedicated batch for NEET Droppers and Repeaters?',
     answer:
-      'Yes. ProBio Academy provides dedicated academic guidance for Undergraduate Programmes, focusing on conceptual clarity, structured reasoning, and individual learning support.',
+      'Yes! ProBio Academy runs an intensive Target NEET Droppers & Repeaters Batch featuring full Class 11 and 12 syllabus consolidation, daily 90-MCQ timed drills, line-by-line NCERT audits, and personal error analysis with Shubhajit Sir.',
   },
   {
-    id: 'postgraduate',
-    question: "Are postgraduate or Master's-level programmes available?",
+    id: 'class-11-12',
+    question: 'How are Class 11 and Class 12 batches structured?',
     answer:
-      "Yes. Academic coaching and mentorship are available up to the Postgraduate / Master's Degree level. You can connect with Shubhajit Sir via WhatsApp or book a demo session to discuss your specific postgraduate study goals.",
+      'Class 11 focuses on establishing deep conceptual roots in Cell Biology, Plant Physiology, and Human Physiology with 3D molecular visualization. Class 12 combines synchronized Board exam preparation with high-yield NEET competitive problem-solving.',
   },
   {
     id: 'book-demo',
-    question: 'How can I book a demo class?',
+    question: 'How can I book a free demo class for NEET preparation?',
     answer:
-      'You can book a free demo class using the Admission & Demo Class Booking form on this website. Once you fill in the student and parent details and click "BOOK A FREE DEMO CLASS", WhatsApp opens with your details pre-filled so you can send the request directly to Shubhajit Sir to confirm available timings.',
+      'You can book a free demo class using the Admission & Demo Booking form on this website. Fill in the student, parent, and course details, and click "BOOK A FREE DEMO CLASS" to automatically open WhatsApp with your details pre-filled for direct confirmation with Shubhajit Sir.',
   },
   {
     id: 'contact-teacher',
-    question: 'How can I contact Shubhajit Sir?',
+    question: 'How can I connect directly with Shubhajit Sir?',
     answer:
-      'You can reach Shubhajit Sir directly by phone or WhatsApp at +91 89818 00375, or visit ProBio Academy in person during opening hours.',
+      'You can contact Shubhajit Sir directly by phone or WhatsApp at +91 89818 00375, or visit ProBio Academy in person at Bonhoogly, Baranagar, Kolkata.',
   },
   {
     id: 'location',
-    question: 'Where is ProBio Academy located?',
+    question: 'Where is ProBio Academy located in Kolkata?',
     answer:
-      'ProBio Academy is located at 9/1, Bireswar Dhole Ln, Bonhoogly, Baranagar, Kolkata, West Bengal 700035. You can also view the interactive map and get directions in the Location section of this website.',
+      'ProBio Academy is located at 9/1, Bireswar Dhole Ln, Bonhoogly, Baranagar, Kolkata, West Bengal 700035. You can view the Google Maps embed and get directions directly in the Location section of this website.',
   },
   {
     id: 'opening-hours',
-    question: "What are the academy's opening hours?",
+    question: 'What are the academy opening hours?',
     answer:
       'ProBio Academy is open Monday to Saturday from 9:00 AM to 8:00 PM, and on Sunday from 9:00 AM to 2:00 PM.',
   },
   {
-    id: 'course-fees',
-    question: 'How can I enquire about course fees?',
+    id: 'interdisciplinary-advantage',
+    question: 'How does Shubhajit Sir’s qualification help NEET aspirants?',
     answer:
-      'For details regarding course fees, schedules, and programme structure, please message Shubhajit Sir directly on WhatsApp at +91 89818 00375 or call during academy hours for accurate information tailored to your class or programme.',
+      'Shubhajit Sir holds an Engineering Degree, LL.B., and English Honours. This enables him to teach bio-energetics and genetics with mathematical precision, tackle tricky Assertion-Reasoning questions with legal scrutiny, and decode dense NCERT passages with rapid linguistic clarity.',
   },
 ];

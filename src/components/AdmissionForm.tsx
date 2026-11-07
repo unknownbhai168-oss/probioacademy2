@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { AlertCircle, CheckCircle2, ExternalLink, MessageCircle, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ExternalLink, MessageCircle, Send, Sparkles } from 'lucide-react';
 import { ACADEMY_INFO, COURSES } from '../data/academyData';
 import {
   buildDemoBookingWhatsAppUrl,
@@ -92,21 +92,21 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
   };
 
   const inputBaseClass =
-    'mt-1.5 w-full rounded-lg border bg-[#F8F9FC] px-4 py-3 text-sm text-[#101D36] placeholder:text-slate-400 transition-colors focus:bg-white focus:outline-none focus:ring-2';
+    'mt-1.5 w-full rounded-xl border bg-[#FBF9FF] px-4 py-3 text-sm text-[#180F2E] placeholder:text-violet-400/60 transition-colors focus:bg-white focus:outline-none focus:ring-2';
 
   const getFieldClass = (field: keyof AdmissionFormData) =>
     errors[field]
-      ? `${inputBaseClass} border-red-600 focus:border-red-600 focus:ring-red-600/20`
-      : `${inputBaseClass} border-[#101D36]/15 focus:border-[#2855C5] focus:ring-[#2855C5]/20`;
+      ? `${inputBaseClass} border-red-500 focus:border-red-500 focus:ring-red-500/20`
+      : `${inputBaseClass} border-purple-500/20 focus:border-purple-600 focus:ring-purple-600/20`;
 
   return (
     <section
       id="admission"
-      className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28 text-[#202A3A]"
+      className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28 text-[#180F2E]"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14 items-start">
-          {/* Left Column: Booking Guidance & WhatsApp Flow Explanation */}
+          {/* Left Column: Booking Guidance & WhatsApp Flow */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -114,19 +114,21 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2855C5]">
-              Admissions &amp; Demo Enquiry
-            </p>
-            <h2 className="mt-2 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#101D36] text-balance leading-tight">
-              Take the First Step Towards Better Learning.
+            <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/40 bg-purple-100/70 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-800">
+              <Sparkles className="h-3 w-3 text-purple-600" />
+              <span>Admissions &amp; Demo Enquiry</span>
+            </div>
+
+            <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#180F2E] text-balance leading-tight">
+              Begin Your NEET Journey with a Free Demo Session.
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-[#202A3A]/85">
-              Connect with us to discuss your academic goals and explore the right learning
-              programme.
+            <p className="mt-4 text-base leading-relaxed text-[#180F2E]/85">
+              Connect with Shubhajit Sir to discuss your NEET score target, current syllabus
+              standing, and join our focused Class 11, Class 12, or Dropper batches.
             </p>
 
             {/* How WhatsApp Demo Booking Works */}
-            <div className="mt-8 rounded-2xl border border-[#101D36]/12 bg-[#101D36] p-6 sm:p-7 text-white shadow-lg">
+            <div className="mt-8 rounded-3xl border border-purple-500/30 bg-[#0B071E] p-6 sm:p-7 text-white shadow-xl">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#25D366]/20 text-[#25D366]">
                   <MessageCircle className="h-5 w-5" />
@@ -135,33 +137,33 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                   <h3 className="font-serif text-lg font-bold text-white">
                     Direct WhatsApp Demo Request
                   </h3>
-                  <p className="text-xs text-[#F2B84B]">
+                  <p className="text-xs text-amber-300">
                     Connects directly with {ACADEMY_INFO.teacherName}
                   </p>
                 </div>
               </div>
 
-              <ol className="mt-5 space-y-3 text-sm text-slate-200">
+              <ol className="mt-5 space-y-3 text-sm text-violet-200/90">
                 <li className="flex items-start gap-3">
-                  <span className="font-serif font-bold text-[#F2B84B] tabular-nums">
+                  <span className="font-serif font-bold text-amber-400 tabular-nums">
                     01.
                   </span>
                   <span>
-                    Complete the student, parent, class/programme, and preferred demo date
-                    details in the form.
+                    Fill in student name, parent name, target batch (Class 11, 12, Droppers),
+                    and preferred date below.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="font-serif font-bold text-[#F2B84B] tabular-nums">
+                  <span className="font-serif font-bold text-amber-400 tabular-nums">
                     02.
                   </span>
                   <span>
-                    Click <strong>BOOK A FREE DEMO CLASS</strong> to prepare your formatted
-                    enquiry message automatically.
+                    Click <strong>BOOK A FREE DEMO CLASS</strong> to automatically format your
+                    enquiry message.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="font-serif font-bold text-[#F2B84B] tabular-nums">
+                  <span className="font-serif font-bold text-amber-400 tabular-nums">
                     03.
                   </span>
                   <span>
@@ -169,7 +171,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                     <span className="font-semibold text-white">
                       {ACADEMY_INFO.phoneDisplay}
                     </span>{' '}
-                    so available timings can be confirmed directly.
+                    to finalize batch timings.
                   </span>
                 </li>
               </ol>
@@ -188,16 +190,16 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
               onSubmit={handleSubmit}
               noValidate
               aria-label="Free Demo Class Booking Form"
-              className="rounded-2xl border border-[#101D36]/12 bg-white p-6 sm:p-8 lg:p-10 shadow-sm"
+              className="rounded-3xl border border-purple-500/20 bg-[#FBF9FF] p-6 sm:p-8 lg:p-10 shadow-sm"
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* 1. Student Name */}
                 <div>
                   <label
                     htmlFor="studentName"
-                    className="block text-xs sm:text-sm font-semibold text-[#101D36]"
+                    className="block text-xs sm:text-sm font-semibold text-[#180F2E]"
                   >
-                    Student Name <span className="text-red-600">*</span>
+                    Student Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="studentName"
@@ -215,7 +217,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                     <p
                       id="studentName-error"
                       role="alert"
-                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-600"
+                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-500"
                     >
                       <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                       <span>{errors.studentName}</span>
@@ -227,9 +229,9 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                 <div>
                   <label
                     htmlFor="parentName"
-                    className="block text-xs sm:text-sm font-semibold text-[#101D36]"
+                    className="block text-xs sm:text-sm font-semibold text-[#180F2E]"
                   >
-                    Parent / Guardian Name <span className="text-red-600">*</span>
+                    Parent / Guardian Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="parentName"
@@ -247,7 +249,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                     <p
                       id="parentName-error"
                       role="alert"
-                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-600"
+                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-500"
                     >
                       <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                       <span>{errors.parentName}</span>
@@ -255,13 +257,13 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                   )}
                 </div>
 
-                {/* 3. Student's Class / Course */}
+                {/* 3. Student's Target Class / Course */}
                 <div>
                   <label
                     htmlFor="courseLevel"
-                    className="block text-xs sm:text-sm font-semibold text-[#101D36]"
+                    className="block text-xs sm:text-sm font-semibold text-[#180F2E]"
                   >
-                    Student&apos;s Class / Course <span className="text-red-600">*</span>
+                    Target Class / NEET Batch <span className="text-red-500">*</span>
                   </label>
                   <select
                     id="courseLevel"
@@ -273,7 +275,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                     aria-describedby={errors.courseLevel ? 'courseLevel-error' : undefined}
                     className={getFieldClass('courseLevel')}
                   >
-                    <option value="">Select Class or Programme</option>
+                    <option value="">Select Target Batch</option>
                     {COURSES.map((course) => (
                       <option key={course.id} value={course.title}>
                         {course.title}
@@ -284,7 +286,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                     <p
                       id="courseLevel-error"
                       role="alert"
-                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-600"
+                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-500"
                     >
                       <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                       <span>{errors.courseLevel}</span>
@@ -296,9 +298,9 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-xs sm:text-sm font-semibold text-[#101D36]"
+                    className="block text-xs sm:text-sm font-semibold text-[#180F2E]"
                   >
-                    Subject <span className="text-red-600">*</span>
+                    Subject / Focus Area <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="subject"
@@ -307,7 +309,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                     required
                     value={formData.subject}
                     onChange={(e) => handleFieldChange('subject', e.target.value)}
-                    placeholder="Enter subject(s) of interest"
+                    placeholder="e.g. NEET UG Biology, NCERT Line-by-Line"
                     aria-invalid={Boolean(errors.subject)}
                     aria-describedby={errors.subject ? 'subject-error' : undefined}
                     className={getFieldClass('subject')}
@@ -316,7 +318,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                     <p
                       id="subject-error"
                       role="alert"
-                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-600"
+                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-500"
                     >
                       <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                       <span>{errors.subject}</span>
@@ -328,9 +330,9 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                 <div>
                   <label
                     htmlFor="contactNumber"
-                    className="block text-xs sm:text-sm font-semibold text-[#101D36]"
+                    className="block text-xs sm:text-sm font-semibold text-[#180F2E]"
                   >
-                    Contact Number <span className="text-red-600">*</span>
+                    Contact Number <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="contactNumber"
@@ -350,7 +352,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                     <p
                       id="contactNumber-error"
                       role="alert"
-                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-600"
+                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-500"
                     >
                       <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                       <span>{errors.contactNumber}</span>
@@ -362,9 +364,9 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                 <div>
                   <label
                     htmlFor="preferredDate"
-                    className="block text-xs sm:text-sm font-semibold text-[#101D36]"
+                    className="block text-xs sm:text-sm font-semibold text-[#180F2E]"
                   >
-                    Preferred Demo Date <span className="text-red-600">*</span>
+                    Preferred Demo Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="preferredDate"
@@ -384,7 +386,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                     <p
                       id="preferredDate-error"
                       role="alert"
-                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-600"
+                      className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-500"
                     >
                       <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                       <span>{errors.preferredDate}</span>
@@ -397,9 +399,9 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
               <div className="mt-5">
                 <label
                   htmlFor="additionalMessage"
-                  className="block text-xs sm:text-sm font-semibold text-[#101D36]"
+                  className="block text-xs sm:text-sm font-semibold text-[#180F2E]"
                 >
-                  Additional Message
+                  Target Score / Questions for Shubhajit Sir
                 </label>
                 <textarea
                   id="additionalMessage"
@@ -407,7 +409,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                   rows={3}
                   value={formData.additionalMessage}
                   onChange={(e) => handleFieldChange('additionalMessage', e.target.value)}
-                  placeholder="Share any preferred timings, academic goals, or questions for Shubhajit Sir"
+                  placeholder="Share your current score, weak topics, or questions about dropper / Class 11-12 timings"
                   className={getFieldClass('additionalMessage')}
                 />
               </div>
@@ -416,7 +418,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
               <div className="mt-7">
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#F2B84B] px-6 py-4 text-sm sm:text-base font-bold tracking-wide text-[#101D36] shadow-md transition-all duration-150 hover:bg-[#F6C96E] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101D36]"
+                  className="w-full inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 px-6 py-4 text-sm sm:text-base font-bold tracking-wide text-white shadow-lg shadow-purple-900/30 transition-all duration-150 hover:from-violet-500 hover:to-fuchsia-500 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-800"
                 >
                   <Send className="h-4 w-4 shrink-0" />
                   <span>BOOK A FREE DEMO CLASS</span>
@@ -428,26 +430,25 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                 <div
                   role="status"
                   aria-live="polite"
-                  className="mt-6 rounded-xl border border-emerald-700/25 bg-emerald-50/70 p-5 text-[#101D36]"
+                  className="mt-6 rounded-2xl border border-emerald-600/30 bg-emerald-50/80 p-5 text-[#180F2E]"
                 >
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-700 mt-0.5" />
                     <div className="flex-1">
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-[#101D36]">
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-[#180F2E]">
                         WhatsApp Ready With Your Demo Class Details
                       </h4>
-                      <p className="mt-1 text-xs sm:text-sm leading-relaxed text-[#202A3A]/90">
-                        WhatsApp is opening in a new tab with your booking enquiry ready to send
-                        to <strong>{ACADEMY_INFO.teacherName}</strong> ({ACADEMY_INFO.phoneDisplay}
-                        ). Please send the message in WhatsApp so available demo timings can be
-                        confirmed directly.
+                      <p className="mt-1 text-xs sm:text-sm leading-relaxed text-[#180F2E]/90">
+                        WhatsApp is opening with your booking enquiry ready to send to{' '}
+                        <strong>{ACADEMY_INFO.teacherName}</strong> ({ACADEMY_INFO.phoneDisplay}
+                        ). Send the message to confirm demo batch timings directly.
                       </p>
 
-                      <div className="mt-4 rounded-lg border border-[#101D36]/12 bg-white p-3.5">
-                        <p className="text-[11px] font-semibold uppercase tracking-wider text-[#2855C5]">
+                      <div className="mt-4 rounded-xl border border-purple-500/15 bg-white p-3.5">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-purple-700">
                           Prepared Message Preview
                         </p>
-                        <pre className="mt-2 whitespace-pre-wrap font-sans text-xs leading-relaxed text-[#202A3A]">
+                        <pre className="mt-2 whitespace-pre-wrap font-sans text-xs leading-relaxed text-[#180F2E]">
                           {preparedSubmission.messageText}
                         </pre>
                       </div>
@@ -457,7 +458,7 @@ export const AdmissionForm: React.FC<AdmissionFormProps> = ({
                           href={preparedSubmission.whatsappUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#091121] shadow-xs transition-colors hover:bg-[#20bd5a]"
+                          className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-5 py-2.5 text-xs sm:text-sm font-bold text-black shadow-sm transition-colors hover:bg-[#20bd5a]"
                         >
                           <span>Open WhatsApp to Send Enquiry</span>
                           <ExternalLink className="h-4 w-4 shrink-0" />
