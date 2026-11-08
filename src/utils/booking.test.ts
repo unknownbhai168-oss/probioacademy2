@@ -130,7 +130,7 @@ test('verified academy data integrity checks', () => {
   assert.equal(QUALIFICATIONS.length, 3);
   assert.deepEqual(
     QUALIFICATIONS.map((q) => q.title),
-    ['Engineering Degree', 'Bachelor of Laws (LL.B.)', 'English Honours']
+    ['Bachelor of Pharmacy (B.Pharm.)', 'Bachelor of Laws (LL.B.)', 'English Honours']
   );
   assert.equal(FAQ_ITEMS.length, 8);
 });

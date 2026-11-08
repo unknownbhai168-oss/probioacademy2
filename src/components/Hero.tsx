@@ -193,7 +193,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCourses, onBookDemo, onView
                     {ACADEMY_INFO.teacherName}
                   </p>
                   <p className="mt-1 text-xs sm:text-sm text-amber-300 font-medium">
-                    Engineering · LL.B. · English Honours
+                    B.Pharm · LL.B. · English Honours
                   </p>
                   <p className="mt-0.5 text-xs text-violet-300">
                     NEET UG Biology &amp; Medical Entrance Mentor

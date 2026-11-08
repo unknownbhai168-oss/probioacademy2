@@ -1,29 +1,44 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
+  ArrowLeft,
   ArrowRight,
   BookOpen,
+  Calendar,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   Clock,
   Eye,
+  HeartHandshake,
   MapPin,
   Maximize2,
   MessageCircle,
+  PartyPopper,
+  Sparkles,
   Target,
   Users,
   X,
   Zap,
 } from 'lucide-react';
-import { ACADEMY_INFO } from '../data/academyData';
+import {
+  ACADEMY_INFO,
+  STUDENT_GALLERY_MOMENTS,
+  type StudentGalleryMoment,
+} from '../data/academyData';
 
 type BackdropMode = 'cinematic' | 'daylight' | 'clarity';
 
 export const StudentBatchShowcase: React.FC = () => {
+  const [activeMomentId, setActiveMomentId] = useState<string>('classroom-batch');
   const [backdropMode, setBackdropMode] = useState<BackdropMode>('cinematic');
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [imgLoaded, setImgLoaded] = useState(true);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  // Overlay styles based on chosen mode so the student photo is directly integrated into the website background
+  const activeMoment =
+    STUDENT_GALLERY_MOMENTS.find((m) => m.id === activeMomentId) ||
+    STUDENT_GALLERY_MOMENTS[0];
+
   const getOverlayClasses = () => {
     switch (backdropMode) {
       case 'daylight':
@@ -43,34 +58,53 @@ export const StudentBatchShowcase: React.FC = () => {
     }
   };
 
+  const handleOpenLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setIsLightboxOpen(true);
+  };
+
+  const handleNextLightbox = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setLightboxIndex((prev) => (prev + 1) % STUDENT_GALLERY_MOMENTS.length);
+  };
+
+  const handlePrevLightbox = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setLightboxIndex(
+      (prev) => (prev - 1 + STUDENT_GALLERY_MOMENTS.length) % STUDENT_GALLERY_MOMENTS.length
+    );
+  };
+
   return (
     <section
       id="students-batch"
-      className="relative min-h-[760px] lg:min-h-[860px] scroll-mt-20 sm:scroll-mt-24 overflow-hidden pt-20 pb-24 sm:pt-24 sm:pb-28 lg:pt-28 lg:pb-32 text-white"
+      className="relative min-h-[760px] lg:min-h-[880px] scroll-mt-20 sm:scroll-mt-24 overflow-hidden pt-20 pb-24 sm:pt-24 sm:pb-28 lg:pt-28 lg:pb-32 text-white"
     >
       {/* =========================================================================
-          BACKGROUND LAYER: Authentic Student Batch Photograph (Directly Integrated)
+          BACKGROUND LAYER: Active Authentic Student Photograph (Directly Integrated)
           ========================================================================= */}
       <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
-        {imgLoaded ? (
-          <img
-            src={ACADEMY_INFO.studentGroupPhotoUrl}
-            alt="Shubhajit Sir's NEET Students and Classroom Batch at ProBio Academy"
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={activeMoment.photoUrl}
+            src={activeMoment.photoUrl}
+            alt={activeMoment.title}
             referrerPolicy="no-referrer"
-            onError={() => setImgLoaded(false)}
-            className="h-full w-full object-cover object-[center_35%] filter brightness-[0.88] contrast-[1.08] transition-transform duration-1000 ease-out scale-100"
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="h-full w-full object-cover object-[center_32%] sm:object-[center_35%] filter brightness-[0.88] contrast-[1.08]"
           />
-        ) : (
-          <div className="h-full w-full bg-[#13092D]" />
-        )}
+        </AnimatePresence>
 
-        {/* Purplish Atmospheric Color Overlay (Responsive to User Mode Toggle) */}
+        {/* Purplish Atmospheric Color Overlay */}
         <div
           aria-hidden="true"
           className={`absolute inset-0 transition-all duration-500 ease-in-out ${getOverlayClasses()}`}
         />
 
-        {/* Top and Bottom Vignette Gradients for Seamless Section Blending */}
+        {/* Top and Bottom Vignette Gradients for Seamless Blending */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0B071E] via-[#0B071E]/70 to-transparent"
@@ -94,18 +128,18 @@ export const StudentBatchShowcase: React.FC = () => {
       </div>
 
       {/* =========================================================================
-          FOREGROUND CONTENT: Glassmorphic Cards Floating Over Student Background
+          FOREGROUND CONTENT: Glassmorphic Cards & Controls Floating Over Background
           ========================================================================= */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Top Controls Bar */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-purple-500/20 backdrop-blur-xs">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-6 border-b border-purple-500/20 backdrop-blur-xs">
           <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/35 bg-purple-950/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-violet-200 shadow-md">
             <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Integrated Classroom Background · Baranagar Center</span>
+            <span>Real Student Photography · Baranagar, Kolkata</span>
           </div>
 
-          {/* Interactive Background Clarity / Transparency Controls */}
-          <div className="flex flex-wrap items-center gap-2">
+          {/* Interactive Background Clarity / Atmosphere Controls */}
+          <div className="flex flex-wrap items-center gap-2.5">
             <span className="hidden md:inline-flex items-center gap-1.5 text-xs text-violet-300 font-medium mr-1">
               <Eye className="h-3.5 w-3.5 text-cyan-400" />
               <span>Backdrop Atmosphere:</span>
@@ -132,9 +166,9 @@ export const StudentBatchShowcase: React.FC = () => {
                     ? 'bg-amber-500 text-purple-950 font-semibold shadow-sm'
                     : 'text-violet-300 hover:text-white'
                 }`}
-                title="Classroom Daylight — reveals more yellow classroom walls and natural lighting"
+                title="Daylight Warmth — reveals more natural room lighting and authentic ambiance"
               >
-                Classroom Daylight
+                Daylight Warmth
               </button>
               <button
                 type="button"
@@ -153,135 +187,284 @@ export const StudentBatchShowcase: React.FC = () => {
             {/* Enlarge / Full-Resolution Lightbox Button */}
             <button
               type="button"
-              onClick={() => setIsLightboxOpen(true)}
+              onClick={() =>
+                handleOpenLightbox(
+                  activeMomentId === 'classroom-batch' ? 0 : 1
+                )
+              }
               aria-label="View photo in high-resolution full screen"
               className="inline-flex items-center gap-1.5 rounded-xl border border-violet-400/30 bg-purple-950/80 px-3 py-1.5 text-xs font-medium text-violet-200 shadow-md backdrop-blur-md transition-colors hover:bg-violet-600 hover:text-white cursor-pointer"
             >
               <Maximize2 className="h-3.5 w-3.5 text-amber-300" />
-              <span>Enlarge Photo</span>
+              <span>Enlarge Gallery</span>
             </button>
           </div>
         </div>
 
+        {/* Dual-Moment Interactive Switcher Pill Cards */}
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+          {STUDENT_GALLERY_MOMENTS.map((moment, idx) => {
+            const isActive = activeMomentId === moment.id;
+            return (
+              <button
+                key={moment.id}
+                type="button"
+                onClick={() => setActiveMomentId(moment.id)}
+                className={`flex items-center gap-3.5 rounded-2xl p-3 border text-left transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? 'border-violet-400 bg-violet-950/90 shadow-xl shadow-purple-950/50 ring-2 ring-violet-400/40'
+                    : 'border-violet-500/25 bg-[#0B071E]/75 hover:border-violet-400/50 hover:bg-[#13092D]/80'
+                }`}
+              >
+                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-violet-400/30 bg-purple-950">
+                  <img
+                    src={moment.photoUrl}
+                    alt={moment.title}
+                    referrerPolicy="no-referrer"
+                    className="h-full w-full object-cover"
+                  />
+                  {isActive && (
+                    <div className="absolute inset-0 bg-violet-600/25 border-2 border-violet-400 rounded-xl" />
+                  )}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <span
+                      className={`h-2 w-2 rounded-full ${
+                        isActive ? 'bg-emerald-400 animate-pulse' : 'bg-violet-400/60'
+                      }`}
+                    />
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-amber-300">
+                      {moment.category}
+                    </span>
+                  </div>
+                  <p className="mt-0.5 font-serif text-sm font-bold text-white truncate">
+                    {moment.id === 'classroom-batch'
+                      ? 'Daily Classroom Batch'
+                      : 'Community Celebration'}
+                  </p>
+                  <p className="text-[11px] text-violet-300 truncate">
+                    {moment.badge}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
         {/* Section Headline & Narrative */}
-        <div className="mt-10 max-w-3xl">
+        <div className="mt-8 max-w-3xl">
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            key={activeMoment.id}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
+            <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/40 bg-purple-950/70 px-3 py-1 text-xs font-semibold text-violet-300 mb-3">
+              <Sparkles className="h-3 w-3 text-amber-400" />
+              <span>{activeMoment.badge}</span>
+            </div>
+
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white text-balance leading-[1.12]">
-              Inside the Classroom:{' '}
-              <span className="bg-gradient-to-r from-violet-300 via-fuchsia-200 to-amber-300 bg-clip-text text-transparent">
-                Where Ambition Meets Mentorship.
-              </span>
+              {activeMoment.title}
             </h2>
             <p className="mt-4 text-base sm:text-lg leading-relaxed text-violet-100/90 drop-shadow-sm">
-              You are looking at the authentic classroom of{' '}
-              <strong className="text-white font-semibold">ProBio Academy</strong> at Bireswar
-              Dhole Lane, Baranagar. Here, Class 11, Class 12, and Dropper students gather daily to
-              turn medical dreams into rigorous academic reality.
+              {activeMoment.description}
             </p>
           </motion.div>
         </div>
 
-        {/* Floating 3-Column Glassmorphic Feature Cards Over the Student Backdrop */}
+        {/* Floating 3-Column Glassmorphic Feature Cards Over the Active Student Backdrop */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1: Class 11 & 12 Synergy */}
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="group rounded-2xl border border-violet-400/25 bg-[#0B071E]/80 p-6 sm:p-7 shadow-xl backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-violet-400/50 hover:bg-[#13092D]/85"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-600/30 border border-violet-400/40 text-violet-300 shadow-inner group-hover:bg-violet-600 group-hover:text-white transition-colors">
-              <BookOpen className="h-6 w-6" />
-            </div>
-            <h3 className="mt-5 font-serif text-xl font-bold text-white">
-              Class 11 &amp; 12 Foundation
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-violet-200/85">
-              Dual syllabus alignment for Board examinations and NEET UG. Deep conceptual
-              grounding in cell biology, plant physiology, genetics, and human physiology.
-            </p>
-            <ul className="mt-4 space-y-2 text-xs text-violet-300/90">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                <span>Line-by-line NCERT diagram drills</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                <span>Weekly topic-wise objective tests</span>
-              </li>
-            </ul>
-          </motion.div>
+          {activeMomentId === 'classroom-batch' ? (
+            <>
+              {/* Card 1: Class 11 & 12 Foundation */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.05 }}
+                className="group rounded-2xl border border-violet-400/25 bg-[#0B071E]/80 p-6 sm:p-7 shadow-xl backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-violet-400/50 hover:bg-[#13092D]/85"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-600/30 border border-violet-400/40 text-violet-300 shadow-inner group-hover:bg-violet-600 group-hover:text-white transition-colors">
+                  <BookOpen className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 font-serif text-xl font-bold text-white">
+                  Class 11 &amp; 12 Foundation
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-violet-200/85">
+                  Dual syllabus alignment for Board examinations and NEET UG. Deep conceptual
+                  grounding in cell biology, plant physiology, genetics, and human physiology.
+                </p>
+                <ul className="mt-4 space-y-2 text-xs text-violet-300/90">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Line-by-line NCERT diagram drills</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Weekly topic-wise objective tests</span>
+                  </li>
+                </ul>
+              </motion.div>
 
-          {/* Card 2: Dedicated Droppers & Repeaters Batch */}
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className="group rounded-2xl border border-amber-400/30 bg-[#0B071E]/85 p-6 sm:p-7 shadow-xl backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-amber-400/60 hover:bg-[#13092D]/90"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-inner group-hover:bg-amber-500 group-hover:text-purple-950 transition-colors">
-              <Target className="h-6 w-6" />
-            </div>
-            <div className="mt-5 flex items-center gap-2">
-              <h3 className="font-serif text-xl font-bold text-white">
-                Target Droppers &amp; Repeaters
-              </h3>
-              <span className="rounded-full bg-amber-400/20 border border-amber-400/40 px-2 py-0.5 text-[10px] font-bold text-amber-300">
-                Specialised
-              </span>
-            </div>
-            <p className="mt-2 text-sm leading-relaxed text-violet-200/85">
-              Personalized diagnosis of past attempts to eliminate negative marking, repair weak
-              concept links, and systematically target 340+ marks in NEET Biology.
-            </p>
-            <ul className="mt-4 space-y-2 text-xs text-violet-300/90">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-amber-300 shrink-0" />
-                <span>Individual mistake analysis notebooks</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-amber-300 shrink-0" />
-                <span>Negative marking control strategies</span>
-              </li>
-            </ul>
-          </motion.div>
+              {/* Card 2: Dedicated Droppers & Repeaters Batch */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="group rounded-2xl border border-amber-400/30 bg-[#0B071E]/85 p-6 sm:p-7 shadow-xl backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-amber-400/60 hover:bg-[#13092D]/90"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-inner group-hover:bg-amber-500 group-hover:text-purple-950 transition-colors">
+                  <Target className="h-6 w-6" />
+                </div>
+                <div className="mt-5 flex items-center gap-2">
+                  <h3 className="font-serif text-xl font-bold text-white">
+                    Target Droppers &amp; Repeaters
+                  </h3>
+                  <span className="rounded-full bg-amber-400/20 border border-amber-400/40 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+                    Specialised
+                  </span>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-violet-200/85">
+                  Personalized diagnosis of past attempts to eliminate negative marking, repair weak
+                  concept links, and systematically target 340+ marks in NEET Biology.
+                </p>
+                <ul className="mt-4 space-y-2 text-xs text-violet-300/90">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-amber-300 shrink-0" />
+                    <span>Individual mistake analysis notebooks</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-amber-300 shrink-0" />
+                    <span>Negative marking control strategies</span>
+                  </li>
+                </ul>
+              </motion.div>
 
-          {/* Card 3: Interactive Doubt Clearance & Peer Synergy */}
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="group rounded-2xl border border-cyan-400/25 bg-[#0B071E]/80 p-6 sm:p-7 shadow-xl backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-cyan-400/50 hover:bg-[#13092D]/85"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-600/30 border border-cyan-400/40 text-cyan-300 shadow-inner group-hover:bg-cyan-500 group-hover:text-purple-950 transition-colors">
-              <Zap className="h-6 w-6" />
-            </div>
-            <h3 className="mt-5 font-serif text-xl font-bold text-white">
-              Fearless Doubt Clearance
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-violet-200/85">
-              An open classroom where no doubt is judged. Aspirants challenge statement-based
-              questions, dissect tricky Assertion-Reasoning traps, and build mental endurance.
-            </p>
-            <ul className="mt-4 space-y-2 text-xs text-violet-300/90">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-cyan-300 shrink-0" />
-                <span>Zero hesitation: speak up freely in every session</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-cyan-300 shrink-0" />
-                <span>Real-time mentor feedback from Shubhajit Sir</span>
-              </li>
-            </ul>
-          </motion.div>
+              {/* Card 3: Interactive Doubt Clearance */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+                className="group rounded-2xl border border-cyan-400/25 bg-[#0B071E]/80 p-6 sm:p-7 shadow-xl backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-cyan-400/50 hover:bg-[#13092D]/85"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-600/30 border border-cyan-400/40 text-cyan-300 shadow-inner group-hover:bg-cyan-500 group-hover:text-purple-950 transition-colors">
+                  <Zap className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 font-serif text-xl font-bold text-white">
+                  Fearless Doubt Clearance
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-violet-200/85">
+                  An open classroom where no doubt is judged. Aspirants challenge statement-based
+                  questions, dissect tricky Assertion-Reasoning traps, and build mental endurance.
+                </p>
+                <ul className="mt-4 space-y-2 text-xs text-violet-300/90">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-cyan-300 shrink-0" />
+                    <span>Zero hesitation: speak up freely in every session</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-cyan-300 shrink-0" />
+                    <span>Real-time mentor feedback from Shubhajit Sir</span>
+                  </li>
+                </ul>
+              </motion.div>
+            </>
+          ) : (
+            <>
+              {/* Card 1: Family & Peer Camaraderie */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.05 }}
+                className="group rounded-2xl border border-violet-400/25 bg-[#0B071E]/80 p-6 sm:p-7 shadow-xl backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-violet-400/50 hover:bg-[#13092D]/85"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-600/30 border border-violet-400/40 text-violet-300 shadow-inner group-hover:bg-violet-600 group-hover:text-white transition-colors">
+                  <Users className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 font-serif text-xl font-bold text-white">
+                  Supportive Peer Community
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-violet-200/85">
+                  A motivating, warm, and ambitious circle of future doctors. Students exchange notes,
+                  quiz each other on NCERT exceptions, and celebrate collective academic triumphs.
+                </p>
+                <ul className="mt-4 space-y-2 text-xs text-violet-300/90">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Positive peer culture without toxic comparison</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Shared motivation during intense test weeks</span>
+                  </li>
+                </ul>
+              </motion.div>
+
+              {/* Card 2: Lifelong Mentor Bond */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="group rounded-2xl border border-amber-400/30 bg-[#0B071E]/85 p-6 sm:p-7 shadow-xl backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-amber-400/60 hover:bg-[#13092D]/90"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-inner group-hover:bg-amber-500 group-hover:text-purple-950 transition-colors">
+                  <HeartHandshake className="h-6 w-6" />
+                </div>
+                <div className="mt-5 flex items-center gap-2">
+                  <h3 className="font-serif text-xl font-bold text-white">
+                    Mentorship Beyond Textbooks
+                  </h3>
+                  <span className="rounded-full bg-amber-400/20 border border-amber-400/40 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+                    Holistic
+                  </span>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-violet-200/85">
+                  Shubhajit Sir mentors each aspirant with genuine empathy, providing emotional
+                  encouragement, exam composure coaching, and personalized career roadmaps.
+                </p>
+                <ul className="mt-4 space-y-2 text-xs text-violet-300/90">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-amber-300 shrink-0" />
+                    <span>Overcoming exam anxiety &amp; score slumps</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-amber-300 shrink-0" />
+                    <span>Continuous accessibility for student guidance</span>
+                  </li>
+                </ul>
+              </motion.div>
+
+              {/* Card 3: Celebrating Milestones */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+                className="group rounded-2xl border border-fuchsia-400/25 bg-[#0B071E]/80 p-6 sm:p-7 shadow-xl backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-fuchsia-400/50 hover:bg-[#13092D]/85"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-600/30 border border-fuchsia-400/40 text-fuchsia-300 shadow-inner group-hover:bg-fuchsia-500 group-hover:text-white transition-colors">
+                  <PartyPopper className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 font-serif text-xl font-bold text-white">
+                  Festive Joy &amp; Milestones
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-violet-200/85">
+                  ProBio Academy celebrates festive traditions and student achievements together.
+                  These memorable gatherings build memories that last well into medical college.
+                </p>
+                <ul className="mt-4 space-y-2 text-xs text-violet-300/90">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-fuchsia-300 shrink-0" />
+                    <span>Celebration of student efforts &amp; consistency</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-fuchsia-300 shrink-0" />
+                    <span>Lifelong camaraderie among batch mates</span>
+                  </li>
+                </ul>
+              </motion.div>
+            </>
+          )}
         </div>
 
         {/* Bottom Classroom Info & WhatsApp CTA Floating Glass Banner */}
@@ -289,7 +472,7 @@ export const StudentBatchShowcase: React.FC = () => {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="mt-10 rounded-2xl border border-violet-400/30 bg-[#0B071E]/90 p-5 sm:p-6 shadow-2xl backdrop-blur-lg"
         >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
@@ -317,7 +500,13 @@ export const StudentBatchShowcase: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
               <a
-                href={ACADEMY_INFO.whatsappBaseUrl + '?text=' + encodeURIComponent('Hello Sir! I saw the classroom batch photograph and would like to enquire about NEET batch timings and seat availability for Class 11 / Class 12 / Droppers.')}
+                href={
+                  ACADEMY_INFO.whatsappBaseUrl +
+                  '?text=' +
+                  encodeURIComponent(
+                    'Hello Sir! I saw the student batch and community photographs on your website and would like to enquire about NEET batch timings and seat availability for Class 11 / Class 12 / Droppers.'
+                  )
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-950/50 transition-all hover:-translate-y-0.5 cursor-pointer whitespace-nowrap"
@@ -340,7 +529,7 @@ export const StudentBatchShowcase: React.FC = () => {
       </div>
 
       {/* =========================================================================
-          LIGHTBOX MODAL: Full View of the Authentic Lossless PNG Photo
+          LIGHTBOX MODAL: High-Resolution Gallery Carousel
           ========================================================================= */}
       <AnimatePresence>
         {isLightboxOpen && (
@@ -349,22 +538,28 @@ export const StudentBatchShowcase: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsLightboxOpen(false)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-6 backdrop-blur-md cursor-pointer"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/92 p-4 sm:p-6 backdrop-blur-md cursor-pointer"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-5xl w-full overflow-hidden rounded-2xl border border-purple-500/30 bg-[#0B071E] p-4 text-white shadow-2xl cursor-default"
+              className="relative max-w-5xl w-full overflow-hidden rounded-2xl border border-purple-500/30 bg-[#0B071E] p-4 sm:p-5 text-white shadow-2xl cursor-default"
             >
+              {/* Lightbox Header */}
               <div className="flex items-center justify-between pb-3 border-b border-purple-500/20">
                 <div>
-                  <p className="font-serif text-lg font-bold text-white">
-                    ProBio Academy — Authentic Student Batch
-                  </p>
-                  <p className="text-xs text-violet-300">
-                    Shubhajit Sir with NEET Aspirants at Baranagar, Kolkata (Class 11, 12 &amp; Droppers)
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-full bg-violet-600/30 border border-violet-400/40 px-2 py-0.5 text-[10px] font-bold text-violet-200">
+                      Photo {lightboxIndex + 1} of {STUDENT_GALLERY_MOMENTS.length}
+                    </span>
+                    <span className="text-xs text-amber-300 font-medium">
+                      {STUDENT_GALLERY_MOMENTS[lightboxIndex].category}
+                    </span>
+                  </div>
+                  <p className="mt-1 font-serif text-lg sm:text-xl font-bold text-white">
+                    {STUDENT_GALLERY_MOMENTS[lightboxIndex].title}
                   </p>
                 </div>
                 <button
@@ -376,18 +571,62 @@ export const StudentBatchShowcase: React.FC = () => {
                 </button>
               </div>
 
-              <div className="mt-4 overflow-hidden rounded-xl bg-purple-950 flex items-center justify-center">
+              {/* Lightbox Main Image & Navigation Arrows */}
+              <div className="relative mt-4 overflow-hidden rounded-xl bg-purple-950 flex items-center justify-center min-h-[300px]">
                 <img
-                  src={ACADEMY_INFO.studentGroupPhotoUrl}
-                  alt="Students of ProBio Academy"
+                  src={STUDENT_GALLERY_MOMENTS[lightboxIndex].photoUrl}
+                  alt={STUDENT_GALLERY_MOMENTS[lightboxIndex].title}
                   referrerPolicy="no-referrer"
-                  className="w-full max-h-[75vh] object-contain mx-auto"
+                  className="w-full max-h-[68vh] object-contain mx-auto"
                 />
+
+                {/* Left Arrow */}
+                <button
+                  type="button"
+                  onClick={handlePrevLightbox}
+                  aria-label="Previous photo"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-purple-950/80 border border-violet-400/40 text-white backdrop-blur-md hover:bg-violet-600 transition-colors cursor-pointer shadow-lg"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+
+                {/* Right Arrow */}
+                <button
+                  type="button"
+                  onClick={handleNextLightbox}
+                  aria-label="Next photo"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-purple-950/80 border border-violet-400/40 text-white backdrop-blur-md hover:bg-violet-600 transition-colors cursor-pointer shadow-lg"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
               </div>
 
-              <div className="mt-3 flex items-center justify-between text-xs text-violet-300">
-                <span>Real Classroom Photography · Preserved in High-Resolution PNG</span>
-                <span className="text-amber-300 font-medium">9/1, Bireswar Dhole Ln, Bonhoogly</span>
+              {/* Lightbox Footer & Thumbnail Switcher */}
+              <div className="mt-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-violet-300">
+                <p className="line-clamp-2 max-w-xl">
+                  {STUDENT_GALLERY_MOMENTS[lightboxIndex].description}
+                </p>
+
+                <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
+                  {STUDENT_GALLERY_MOMENTS.map((item, idx) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => setLightboxIndex(idx)}
+                      className={`h-10 w-14 overflow-hidden rounded-lg border transition-all cursor-pointer ${
+                        lightboxIndex === idx
+                          ? 'border-violet-400 ring-2 ring-violet-400/50 scale-105'
+                          : 'border-purple-500/30 opacity-60 hover:opacity-100'
+                      }`}
+                    >
+                      <img
+                        src={item.photoUrl}
+                        alt={item.title}
+                        className="h-full w-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </motion.div>

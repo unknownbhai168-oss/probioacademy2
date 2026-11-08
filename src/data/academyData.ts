@@ -13,7 +13,7 @@ export interface QualificationItem {
   title: string;
   discipline: string;
   description: string;
-  iconName: 'engineering' | 'law' | 'english';
+  iconName: 'bpharm' | 'law' | 'english';
 }
 
 export interface BioPerspective {
@@ -60,6 +60,8 @@ export const ACADEMY_INFO = {
   teacherName: 'Shubhajit Sir',
   teacherPhotoUrl: '/assets/aistudio/image_b76088bf.png',
   studentGroupPhotoUrl: '/assets/aistudio/image_48a471f3.png',
+  studentCommunityPhotoUrl:
+    '/assets/aistudio/WhatsApp_Image_2026-11-08_at_3.40.40_PM_dcc07762.jpeg',
   phoneDisplay: '+91 89818 00375',
   phoneHref: 'tel:+918981800375',
   whatsappNumber: '918981800375',
@@ -129,16 +131,16 @@ export const ABOUT_HIGHLIGHTS = [
 ] as const;
 
 export const TEACHER_BIOGRAPHY =
-  'Shubhajit Sir brings a unique, high-impact interdisciplinary perspective to NEET UG coaching and academic mentoring. With academic qualifications spanning an Engineering Degree, Bachelor of Laws (LL.B.), and English Honours, his mentorship combines quantitative modeling, razor-sharp logical deduction, and linguistic clarity. This rare multidisciplinary approach equips NEET aspirants, Class 11–12 students, and droppers with the analytical power to conquer tricky assertion-reasoning questions, multi-statement questions, and complex biochemical mechanisms without relying on rote memorisation.';
+  'Shubhajit Sir brings a unique, high-impact interdisciplinary perspective to NEET UG coaching and academic mentoring. With academic qualifications spanning a Bachelor of Pharmacy (B.Pharm.) Degree, Bachelor of Laws (LL.B.), and English Honours, his mentorship combines pharmaceutical and physiological depth, razor-sharp logical deduction, and linguistic clarity. This rare multidisciplinary approach equips NEET aspirants, Class 11–12 students, and droppers with the analytical power to conquer tricky assertion-reasoning questions, multi-statement questions, and complex biochemical mechanisms without relying on rote memorisation.';
 
 export const QUALIFICATIONS: QualificationItem[] = [
   {
-    id: 'engineering',
-    title: 'Engineering Degree',
-    discipline: 'Analytical Modeling & Quantitative Bio-Energetics',
+    id: 'bpharm',
+    title: 'Bachelor of Pharmacy (B.Pharm.)',
+    discipline: 'Pharmaceutical Sciences, Human Physiology & Biochemistry',
     description:
-      'Applies systematic problem-solving, flowchart modeling, and quantitative analysis to genetics numericals, Hardy-Weinberg equilibrium, and molecular pathways.',
-    iconName: 'engineering',
+      'Provides deep conceptual mastery in human physiology, endocrinology, biochemistry, biomolecules, and biotechnology. Demystifies cellular receptors, metabolic cascades, and bioenergetics with clinical accuracy.',
+    iconName: 'bpharm',
   },
   {
     id: 'llb',
@@ -168,14 +170,14 @@ export const TEACHING_PHILOSOPHY = [
 
 export const BIO_PERSPECTIVES: BioPerspective[] = [
   {
-    id: 'analytical',
-    label: 'Engineering Logic for NEET',
-    qualificationTag: 'Engineering Degree Perspective',
-    headline: 'Deconstructing Complex Pathways into Logical Systems',
+    id: 'bpharm',
+    label: 'B.Pharm Physiology & Pharmacology',
+    qualificationTag: 'Bachelor of Pharmacy (B.Pharm.) Perspective',
+    headline: 'Demystifying Human Physiology, Biochemistry & Molecular Pathways',
     summary:
-      'In NEET Biology, students often struggle with intricate metabolic cycles and molecular genetics. Using engineering system frameworks, respiration, photosynthesis, and DNA replication are taught as elegant logical circuits rather than dry lists of steps.',
+      'NEET Biology questions frequently test intricate mechanisms in Human Physiology, Genetics, and Biomolecules. With a Bachelor of Pharmacy background, Shubhajit Sir decodes receptor signaling, hormonal feedback loops, and metabolic cycles with authentic biochemical precision.',
     classroomApplication:
-      'Students master genetics numericals, pedigree charts, and biochemical cascades with effortless clarity.',
+      'Students master high-weightage chapters like Human Physiology, Biomolecules, and Biotechnology with clinical clarity and diagrammatic mastery.',
   },
   {
     id: 'reasoning',
@@ -317,7 +319,7 @@ export const WHY_CHOOSE_US: WhyChooseItem[] = [
     number: '03',
     title: 'Interdisciplinary Mentor Edge',
     description:
-      'Guided by Shubhajit Sir (Engineering, LL.B., English Honours) to combine quantitative modeling, legal logic, and reading speed.',
+      'Guided by Shubhajit Sir (B.Pharm, LL.B., English Honours) to combine pharmaceutical physiology depth, legal logic, and reading speed.',
     iconName: 'layers',
   },
   {
@@ -469,6 +471,52 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: 'interdisciplinary-advantage',
     question: 'How does Shubhajit Sir’s qualification help NEET aspirants?',
     answer:
-      'Shubhajit Sir holds an Engineering Degree, LL.B., and English Honours. This enables him to teach bio-energetics and genetics with mathematical precision, tackle tricky Assertion-Reasoning questions with legal scrutiny, and decode dense NCERT passages with rapid linguistic clarity.',
+      'Shubhajit Sir holds a Bachelor of Pharmacy (B.Pharm.) Degree, LL.B., and English Honours. This enables him to teach human physiology, biochemistry, and molecular biology with pharmaceutical depth, tackle tricky Assertion-Reasoning questions with legal scrutiny, and decode dense NCERT passages with rapid linguistic clarity.',
   },
 ];
+
+export interface StudentGalleryMoment {
+  id: string;
+  title: string;
+  category: string;
+  badge: string;
+  description: string;
+  photoUrl: string;
+  tag: string;
+  highlights: string[];
+}
+
+export const STUDENT_GALLERY_MOMENTS: StudentGalleryMoment[] = [
+  {
+    id: 'classroom-batch',
+    title: 'Inside the Classroom: Where Ambition Meets Mentorship',
+    category: 'Daily Academic Session',
+    badge: 'Classroom Batch · Baranagar Center',
+    tag: 'Academic Coaching',
+    description:
+      'Class 11, Class 12, and Dropper students gathering at Bireswar Dhole Lane for intensive, line-by-line NCERT deconstruction, doubt-solving sessions, and peer camaraderie under Shubhajit Sir.',
+    photoUrl: '/assets/aistudio/image_48a471f3.png',
+    highlights: [
+      'Focused small-batch sizes for personal supervision',
+      'Daily MCQ drills & negative marking control',
+      'Dedicated space & roadmaps for Droppers & Repeaters',
+    ],
+  },
+  {
+    id: 'community-celebration',
+    title: 'The ProBio Family: United in Ambition & Celebration',
+    category: 'Academy Family & Milestones',
+    badge: 'Student Community & Gathering',
+    tag: 'Community Life',
+    description:
+      'A joyful celebration of ProBio Academy aspirants coming together—fostering deep peer support, lifelong motivation, and mutual encouragement beyond the classroom walls.',
+    photoUrl:
+      '/assets/aistudio/WhatsApp_Image_2026-11-08_at_3.40.40_PM_dcc07762.jpeg',
+    highlights: [
+      'Encouraging peer culture free from toxic competition',
+      'Annual felicitation, festive joy & shared milestones',
+      'Continuous mentorship and emotional support',
+    ],
+  },
+];
+

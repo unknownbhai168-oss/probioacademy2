@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpenText, Compass, Scale } from 'lucide-react';
+import { BookOpenText, FlaskConical, Scale } from 'lucide-react';
 import { QUALIFICATIONS, type QualificationItem } from '../data/academyData';
 
 const QualificationIcon: React.FC<{ name: QualificationItem['iconName'] }> = ({
   name,
 }) => {
   switch (name) {
-    case 'engineering':
-      return <Compass className="h-6 w-6 text-amber-300" />;
+    case 'bpharm':
+      return <FlaskConical className="h-6 w-6 text-amber-300" />;
     case 'law':
       return <Scale className="h-6 w-6 text-amber-300" />;
     case 'english':
